@@ -3,27 +3,21 @@ exports.PAGE_PER_SCREEN = 4;
 
 exports.POST = 'post';
 exports.PORTFOLIO = 'portfolio';
-exports.RESUME = 'resume';
+exports.ABOUT = 'about';
 
 // Site Information
-exports.NAME = 'Gatsby Advanced Blog';
-exports.TITLE = 'Gatsby Advanced Blog';
-exports.PREFIX = 'WONISM | ';
-exports.DESCRIPTION = 'Create your own blog with Gatsby Advanced Blog';
-exports.AUTHOR = 'wonism';
-exports.EMAIL = 'yocee57@gmail.com';
+exports.NAME = 'Aggy\'s Blog';
+exports.TITLE = 'Aggy\'s Blog';
+exports.PREFIX = 'AGGY\'S WORLD | ';
+exports.DESCRIPTION = 'Take a peek in to my magical world!';
+exports.AUTHOR = 'Agastya the Wonder Kid';
+exports.EMAIL = 'info@agastya.co.uk';
 exports.KEYWORDS = [
   'Gatsby',
   'ReactJS',
 ].join(', ');
-exports.SITE_URL = 'https://wonism.github.io';
-exports.PROFILE = 'https://avatars3.githubusercontent.com/u/42737121?s=200&v=4';
+exports.SITE_URL = 'https://card-stack.co.uk';
+exports.PROFILE = 'https://card-stack.co.uk';
 
 // Social
-exports.GITHUB_ID = 'wonism';
-exports.TWITTER_ID = 'j1ism';
-exports.FACEBOOK_ID = 'j1.chic';
-exports.LINKEDIN_ID = 'wonism';
-
-// Disqus (Recommend you to use this)
-exports.DISQUS_ID = 'sample';
+exports.YOUTUBE_ID = 'UCtNzVGXIajc_tkb94VXKa4A';

@@ -95,4 +95,4 @@
     - [x] Put Tweet into post
     - [x] Draft (set `hide` to `true`)
   - [x] Portfolio
-  - [x] Resume
+  - [x] About

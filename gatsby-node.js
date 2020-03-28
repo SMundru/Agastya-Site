@@ -8,7 +8,7 @@ const {
   CONTENT_PER_PAGE,
   POST,
   PORTFOLIO,
-  RESUME,
+  ABOUT,
 } = require('./src/constants');
 
 exports.onCreateWebpackConfig = ({
@@ -42,7 +42,7 @@ exports.createPages = ({ graphql, actions }) => {
     const list = path.resolve('./src/templates/List.jsx');
     const taggedList = path.resolve('./src/templates/TaggedList.jsx');
     const categorizedList = path.resolve('./src/templates/CategorizedList.jsx');
-    const resume = path.resolve('./src/templates/Resume.jsx');
+    const about = path.resolve('./src/templates/About.jsx');
     const portfolios = path.resolve('./src/templates/Portfolios.jsx');
     const portfolio = path.resolve('./src/templates/Portfolio.jsx');
 
@@ -88,8 +88,8 @@ exports.createPages = ({ graphql, actions }) => {
               case PORTFOLIO:
                 component = portfolio;
                 break;
-              case RESUME:
-                component = resume;
+              case ABOUT:
+                component = about;
                 break;
               case POST:
               default:

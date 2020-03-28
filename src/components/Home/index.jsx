@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
+import {Link} from 'gatsby';
 import Helmet from 'react-helmet';
 import Wrapper from '~/components/Common/Wrapper';
 import SimpleWrapper from '~/components/Common/SimpleWrapper';
 import PortfolioCard from '~/components/Common/PortfolioCard';
-import { TITLE } from '~/constants';
-import { Title } from './styled';
+import {TITLE} from '~/constants';
+import {Title} from './styled';
 
 const Home = ({ portfolios }) => (
   <>
@@ -17,9 +17,9 @@ const Home = ({ portfolios }) => (
       <meta name="og:title" content={TITLE} />
     </Helmet>
     <Wrapper isHome>
-      <Title>
-        Hello, Blog!
-      </Title>
+        <Title>
+            I'm Agastya
+        </Title>
     </Wrapper>
     {portfolios.length >= 4 ? (
       <SimpleWrapper>

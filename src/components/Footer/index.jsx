@@ -3,14 +3,13 @@ import { FooterWrapper } from './styled';
 
 const Footer = () => (
   <FooterWrapper>
-    Theme by @
-    <a
-      href="https://github.com/wonism/gatsby-advanced-blog"
+      Copyright © <a
+      href="https://card-stack.co.uk"
       target="_blank"
       rel="noreferrer noopener"
     >
-      wonism
-    </a>
+      Cardstack Consulting Limited 2020
+  </a>
   </FooterWrapper>
 );
 

@@ -115,8 +115,8 @@ const Gnb = ({
   const { pathname } = location;
   const isPortfolio = pathname.replace(/\/$/, '').startsWith('/portfolios');
   const isHome = pathname.replace(/\/$/, '') === '';
-  const isResume = pathname.replace(/\/$/, '') === '/resume';
-  const isPost = !(isPortfolio || isHome || isResume);
+  const isAbout = pathname.replace(/\/$/, '') === '/about';
+  const isPost = !(isPortfolio || isHome || isAbout);
 
   return (
     <GnbWrapper>
@@ -131,7 +131,7 @@ const Gnb = ({
             </ListMenu>
             <ListMenu>
               <StyledLink to="/pages/1" className={isPost ? 'active' : ''} onClick={toggleMenu}>
-                Posts
+                Years
               </StyledLink>
               {categories.length > 0
                 ? (
@@ -169,13 +169,13 @@ const Gnb = ({
             {hasPortfolio ? (
               <ListMenu>
                 <StyledLink to="/portfolios" className={isPortfolio ? 'active' : ''} onClick={toggleMenu}>
-                  Portfolio
+                  Blog
                 </StyledLink>
               </ListMenu>
             ) : null}
             <ListMenu>
-              <StyledLink to="/resume" className={isResume ? 'active' : ''} onClick={toggleMenu}>
-                Resume
+              <StyledLink to="/about" className={isAbout ? 'active' : ''} onClick={toggleMenu}>
+                About
               </StyledLink>
             </ListMenu>
             <SearchBarWrapper>
@@ -240,7 +240,7 @@ const Gnb = ({
         </ListMenu>
         <ListMenu>
           <StyledLink to="/pages/1" className={isPost ? 'active' : ''}>
-            Posts
+            Years
             &nbsp;
             {categories.length > 0 ? <FaCaretDown /> : null}
           </StyledLink>
@@ -269,13 +269,13 @@ const Gnb = ({
         {hasPortfolio ? (
           <ListMenu>
             <StyledLink to="/portfolios" className={isPortfolio ? 'active' : ''}>
-              Portfolio
+              Blog
             </StyledLink>
           </ListMenu>
         ) : null}
         <ListMenu>
-          <StyledLink to="/resume" className={isResume ? 'active' : ''}>
-            Resume
+          <StyledLink to="/about" className={isAbout ? 'active' : ''}>
+            About
           </StyledLink>
         </ListMenu>
       </List>

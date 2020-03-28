@@ -1,6 +1,6 @@
 ---
 type: "portfolio"
-title: "Gatsby Advanced Blog"
+title: "Cardstack"
 date: "2018-01-04:00:00.000Z"
 path: "/portfolios/portfolio-4/"
 images: [
@@ -10,10 +10,10 @@ images: [
 ]
 ---
 
-# Gatsby Advanced Blog
+# Cardstack
 
 ## What I did
-- Develop Gatsby Advanced Blog
+- Cardstack
 
 ## Libraries / Tools
 - ReactJS
@@ -21,4 +21,4 @@ images: [
 - Redux saga
 - ...
 
-[Go to Web Site →](https://github.com/wonism/gatsby-advanced-blog)
+[Go to Web Site →](https://card-stack.co.uk)

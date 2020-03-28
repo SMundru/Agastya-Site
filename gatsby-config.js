@@ -59,7 +59,12 @@ module.exports = {
       },
     },
     'gatsby-plugin-offline',
-    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-react-helmet', {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        icon: "src/resources/images/orange.png", // This path is relative to the root of the site.
+      }
+    },
     'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-plugin-manifest',
@@ -70,8 +75,7 @@ module.exports = {
         background_color: '#fff',
         theme_color: '#3B9CFF',
         display: 'minimal-ui',
-        /*
-        icons: [{
+        /*icons: [{
           // Everything in /static will be copied to an equivalent
           // directory in /public during development and build, so
           // assuming your favicons are in /static/favicons,
@@ -83,8 +87,7 @@ module.exports = {
           src: `/favicons/android-chrome-512x512.png`,
           sizes: `512x512`,
           type: `image/png`,
-        }],
-        */
+        }],*/
       },
     },
     'gatsby-plugin-sitemap',
@@ -96,5 +99,12 @@ module.exports = {
         policy: [{ userAgent: '*', allow: '/' }],
       },
     },
+    'gatsby-plugin-offline',
+    {
+      resolve: `gatsby-plugin-s3`,
+      options: {
+        bucketName: "agastya.co.uk",
+      },
+    }
   ],
 };
