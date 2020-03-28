@@ -15,7 +15,7 @@ export default class HTML extends Component {
     } = this.props;
 
     return (
-      <html {...htmlAttributes} lang="ko">
+      <html {...htmlAttributes} lang="en">
         <head>
           {headComponents}
           <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -31,13 +31,8 @@ export default class HTML extends Component {
           <meta property="og:title" content={TITLE} />
           <meta property="og:site_name" content={NAME || TITLE} />
           <meta property="og:type" content="website" />
-          {/* <meta property="og:url" content="" /> */}
-          {/* <meta property="og:image" content="" /> */}
           <meta property="og:description" content={DESCRIPTION} />
-          <meta property="og:locale" content="ko_KR" />
-          {/* <meta name="msapplication-TileImage" content="" /> */}
-          {/* <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="" /> */}
-          {/* <link rel="apple-touch-icon" type="image/vnd.microsoft.icon" href="" /> */}
+          <meta property="og:locale" content="en_GB" />
           <style id="gatsby-inlined-css" dangerouslySetInnerHTML={{ __html: stylesStr }} />
         </head>
         <body {...bodyAttributes}>
