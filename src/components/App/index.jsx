@@ -9,15 +9,12 @@ import { Wrapper } from './styled';
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    location: PropTypes.shape({ pathname: PropTypes.string.isRequired }).isRequired,
-    categories: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    postInformations: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    hasPortfolio: PropTypes.bool.isRequired,
-  }
+    location: PropTypes.shape({ pathname: PropTypes.string.isRequired }).isRequired
+  };
 
   state = {
     isDracula: global.localStorage && global.localStorage.getItem('theme') === 'dracula',
-  }
+  };
 
   toggleTheme = () => {
     const { isDracula } = this.state;
@@ -40,10 +37,7 @@ export default class App extends Component {
   render() {
     const {
       location,
-      categories,
-      postInformations,
-      hasPortfolio,
-      children,
+      children
     } = this.props;
     const { isDracula } = this.state;
     const theme = isDracula ? {
@@ -60,9 +54,6 @@ export default class App extends Component {
           <nav>
             <Gnb
               location={location}
-              categories={categories}
-              postInformations={postInformations}
-              hasPortfolio={hasPortfolio}
               toggleTheme={this.toggleTheme}
               isDracula={isDracula}
             />

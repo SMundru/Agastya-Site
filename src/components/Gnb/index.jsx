@@ -1,4 +1,4 @@
-import React, { useReducer, useCallback, useEffect } from 'react';
+import React, {useReducer, useCallback, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { Link, navigate } from 'gatsby';
 import Toggle from 'react-toggle';
@@ -69,10 +69,7 @@ const reducer = (state = initialState, action) => {
 const Gnb = ({
   location,
   toggleTheme,
-  isDracula,
-  categories,
-  postInformations,
-  hasPortfolio,
+  isDracula
 }) => {
   const [{ isMenuOpened, isSubMenuClosed, searchKeyword }, dispatch] = useReducer(reducer, initialState);
   const toggleMenu = useCallback(() => {
@@ -89,6 +86,13 @@ const Gnb = ({
 
     dispatch({ type: INPUT_KEYWORD, searchKeyword });
   });
+
+  const { pathname } = location;
+  const isYear = pathname.replace(/\/$/, '').startsWith('/year');
+  const isHome = pathname.replace(/\/$/, '') === '';
+  const isAbout = pathname.replace(/\/$/, '') === '/about';
+  const isBlog = !(isYear || isHome || isAbout);
+
   useEffect(() => {
     if (isMenuOpened) {
       global.document.body.style.overflow = 'hidden';
@@ -97,26 +101,16 @@ const Gnb = ({
     }
   }, [isMenuOpened]);
 
-  const filteredPosts = searchKeyword.length > 0
-    ? (
-      postInformations
-        .filter(({ category = '', title = '', tags = [] }) => {
-          const c = category.toLowerCase();
-          const h = title.toLowerCase();
-          const t = tags.map(tag => tag.toLowerCase());
+  const [folders, setFolders] = useState([]);
+  useEffect(() => {
+    fetch(`https://rv673fuek6.execute-api.eu-west-2.amazonaws.com/Dev/?bucket=agastya-encoded&delimiter=/`)
+        .then(response => response.json())
+        .then(resultData => {
+          setFolders(resultData.CommonPrefixes.map(a => a.Prefix))
+        })
+  }, []);
 
-          const searchedWithCategory = c.search(searchKeyword) !== -1;
-          const searchedWithTitle = h.search(searchKeyword) !== -1;
-          const searchedWithTags = t.filter(t => t.search(searchKeyword) !== -1).length > 0;
-
-          return searchedWithCategory || searchedWithTitle || searchedWithTags;
-        }))
-    : [];
-  const { pathname } = location;
-  const isPortfolio = pathname.replace(/\/$/, '').startsWith('/portfolios');
-  const isHome = pathname.replace(/\/$/, '') === '';
-  const isAbout = pathname.replace(/\/$/, '') === '/about';
-  const isPost = !(isPortfolio || isHome || isAbout);
+  // const folders = years.map(f => f.split("_").map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(" ").substring(0, f.length-1));
 
   return (
     <GnbWrapper>
@@ -130,10 +124,10 @@ const Gnb = ({
               </StyledLink>
             </ListMenu>
             <ListMenu>
-              <StyledLink to="/pages/1" className={isPost ? 'active' : ''} onClick={toggleMenu}>
+              <StyledLink to={'/year'} className={isYear ? 'active' : ''} onClick={toggleMenu}>
                 Years
               </StyledLink>
-              {categories.length > 0
+              {folders.length > 0
                 ? (
                   <>
                     &nbsp;
@@ -146,19 +140,18 @@ const Gnb = ({
                 : null}
               <SubMenu>
                 <div>
-                  {categories.map(({ key, length }) => {
-                    if (key === '__ALL__') {
+                  {folders.map(folder => {
+                    if (folder === '') {
                       return null;
                     }
 
+                    console.log(folder)
+
                     return (
-                      <li key={key}>
-                        <Link to={`/categories/${key}/1`} onClick={toggleMenu}>
-                          {key}
+                      <li key={folder}>
+                        <Link to={`/year`} onClick={toggleMenu} state={{folder: folder}}>
+                          {folder}
                           &nbsp;
-                          <small>
-                            {`(${length})`}
-                          </small>
                         </Link>
                       </li>
                     );
@@ -166,13 +159,6 @@ const Gnb = ({
                 </div>
               </SubMenu>
             </ListMenu>
-            {hasPortfolio ? (
-              <ListMenu>
-                <StyledLink to="/portfolios" className={isPortfolio ? 'active' : ''} onClick={toggleMenu}>
-                  Blog
-                </StyledLink>
-              </ListMenu>
-            ) : null}
             <ListMenu>
               <StyledLink to="/about" className={isAbout ? 'active' : ''} onClick={toggleMenu}>
                 About
@@ -189,7 +175,7 @@ const Gnb = ({
                 onChange={inputKeyword}
               />
             </SearchBarWrapper>
-            <SearchedPosts isEmpty={filteredPosts.length === 0}>
+            {/*<SearchedPosts isEmpty={filteredPosts.length === 0}>
               {filteredPosts.map(({ path, title, summary, tags }) => (
                 <SearchedPost key={path}>
                   <Title onClick={() => { navigateToPath(path); }}>
@@ -210,7 +196,7 @@ const Gnb = ({
                   ))}
                 </SearchedPost>
               ))}
-            </SearchedPosts>
+            </SearchedPosts>*/}
           </ul>
         </MobileMenus>
       </MobileMenu>
@@ -239,40 +225,36 @@ const Gnb = ({
           </StyledLink>
         </ListMenu>
         <ListMenu>
-          <StyledLink to="/pages/1" className={isPost ? 'active' : ''}>
+          <StyledLink to="/year" className={isYear ? 'active' : ''}>
             Years
             &nbsp;
-            {categories.length > 0 ? <FaCaretDown /> : null}
+            {folders.length > 0 ? <FaCaretDown /> : null}
           </StyledLink>
-          <SubMenu>
+          {<SubMenu>
             <div>
-              {categories.map(({ key, length }) => {
-                if (key === '__ALL__') {
+              {folders.map((folder, i) => {
+                if (folder === '') {
                   return null;
                 }
-
                 return (
-                  <li key={key}>
-                    <Link to={`/categories/${key}/1`}>
-                      {key}
+                  <li key={i}>
+                    <Link to={`/year`} key={i} state={{folder: folder}}>
+                      {folder}
                       &nbsp;
-                      <small>
-                        {`(${length})`}
-                      </small>
                     </Link>
                   </li>
                 );
               })}
             </div>
-          </SubMenu>
+          </SubMenu>}
         </ListMenu>
-        {hasPortfolio ? (
+        {/*{hasPortfolio ? (
           <ListMenu>
-            <StyledLink to="/portfolios" className={isPortfolio ? 'active' : ''}>
+            <StyledLink to="/portfolios" className={isYear ? 'active' : ''}>
               Blog
             </StyledLink>
           </ListMenu>
-        ) : null}
+        ) : null}*/}
         <ListMenu>
           <StyledLink to="/about" className={isAbout ? 'active' : ''}>
             About
@@ -290,28 +272,28 @@ const Gnb = ({
           onChange={inputKeyword}
         />
       </SearchBarWrapper>
-      <SearchedPosts isEmpty={filteredPosts.length === 0}>
-        {filteredPosts.map(({ path, title, summary, tags }) => (
-          <SearchedPost key={path}>
-            <Title onClick={() => { navigateToPath(path); }}>
-              {title}
-            </Title>
-            <Summary onClick={() => { navigateToPath(path); }}>
-              {summary}
-            </Summary>
-            {tags.length > 0 ? (
-              <FaTags />
-            ) : null}
-            {[...new Set(tags)].map(tag => (
-              <Tag key={tag} onClick={() => { navigateToPath(`/tags/${tag}/1`); }}>
-                <small>
-                  {tag}
-                </small>
-              </Tag>
-            ))}
-          </SearchedPost>
-        ))}
-      </SearchedPosts>
+      {/*<SearchedPosts isEmpty={filteredPosts.length === 0}>*/}
+      {/*  {filteredPosts.map(({ path, title, summary, tags }) => (*/}
+      {/*    <SearchedPost key={path}>*/}
+      {/*      <Title onClick={() => { navigateToPath(path); }}>*/}
+      {/*        {title}*/}
+      {/*      </Title>*/}
+      {/*      <Summary onClick={() => { navigateToPath(path); }}>*/}
+      {/*        {summary}*/}
+      {/*      </Summary>*/}
+      {/*      {tags.length > 0 ? (*/}
+      {/*        <FaTags />*/}
+      {/*      ) : null}*/}
+      {/*      {[...new Set(tags)].map(tag => (*/}
+      {/*        <Tag key={tag} onClick={() => { navigateToPath(`/tags/${tag}/1`); }}>*/}
+      {/*          <small>*/}
+      {/*            {tag}*/}
+      {/*          </small>*/}
+      {/*        </Tag>*/}
+      {/*      ))}*/}
+      {/*    </SearchedPost>*/}
+      {/*  ))}*/}
+      {/*</SearchedPosts>*/}
     </GnbWrapper>
   );
 };
@@ -319,15 +301,7 @@ const Gnb = ({
 Gnb.propTypes = {
   location: PropTypes.shape({ pathname: PropTypes.string.isRequired }).isRequired,
   toggleTheme: PropTypes.func.isRequired,
-  isDracula: PropTypes.bool.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.shape({})),
-  postInformations: PropTypes.arrayOf(PropTypes.shape({})),
-  hasPortfolio: PropTypes.bool.isRequired,
-};
-
-Gnb.defaultProps = {
-  categories: [],
-  postInformations: [],
+  isDracula: PropTypes.bool.isRequired
 };
 
 export default Gnb;
