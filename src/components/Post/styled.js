@@ -15,8 +15,9 @@ export const Tags = styled.div`
 `;
 
 export const PostContent = styled.section`
-  padding: 1em 0 4em;
+  padding-top: 70px;
   line-height: 1.6em;
+  width: 300px;
 
   h2 {
     margin: 24px 0 10px;

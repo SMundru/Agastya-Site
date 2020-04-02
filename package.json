@@ -8,12 +8,14 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.0",
+    "bootstrap": "^4.4.1",
     "clipboard": "^2.0.4",
     "core-js": "^2.6.5",
     "gatsby": "^2.20.8",
     "gatsby-plugin-s3": "^0.3.3",
     "npm": "^6.14.4",
     "react": "^16.8.5",
+    "react-bootstrap": "^1.0.0",
     "react-dom": "^16.8.5",
     "react-helmet": "^5.2.0",
     "react-icons": "^3.5.0",
@@ -59,7 +61,8 @@
     "lint-staged": "^8.1.5",
     "prettier": "^1.16.4",
     "prettier-eslint-cli": "^5.0.0",
-    "prismjs": "^1.15.0"
+    "prismjs": "^1.15.0",
+    "react-video": "^1.5.3"
   },
   "scripts": {
     "precommit": "lint-staged",

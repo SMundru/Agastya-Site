@@ -1,27 +1,22 @@
-import React, {useReducer, useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useReducer, useState} from 'react';
 import PropTypes from 'prop-types';
-import { Link, navigate } from 'gatsby';
+import {Link, navigate} from 'gatsby';
 import Toggle from 'react-toggle';
-import { FaCaretDown, FaSearch, FaTags } from 'react-icons/fa';
+import {FaCaretDown, FaSearch} from 'react-icons/fa';
 import {
-  Hamburger,
-  MovableFaCaretDown,
-  GnbWrapper,
-  List,
-  SubMenu,
-  ListMenu,
-  Home,
-  StyledLink,
-  SearchBarWrapper,
-  SearchBar,
-  SearchedPosts,
-  Title,
-  Summary,
-  Tag,
-  SearchedPost,
   Background,
-  MobileMenus,
+  GnbWrapper,
+  Hamburger,
+  Home,
+  List,
+  ListMenu,
   MobileMenu,
+  MobileMenus,
+  MovableFaCaretDown,
+  SearchBar,
+  SearchBarWrapper,
+  StyledLink,
+  SubMenu,
   ToggleWrapper,
 } from './styled';
 
@@ -110,8 +105,6 @@ const Gnb = ({
         })
   }, []);
 
-  // const folders = years.map(f => f.split("_").map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(" ").substring(0, f.length-1));
-
   return (
     <GnbWrapper>
       <MobileMenu isActive={isMenuOpened} isSubActive={isSubMenuClosed}>
@@ -124,9 +117,9 @@ const Gnb = ({
               </StyledLink>
             </ListMenu>
             <ListMenu>
-              <StyledLink to={'/year'} className={isYear ? 'active' : ''} onClick={toggleMenu}>
+              <span onClick={toggleMenu}>
                 Years
-              </StyledLink>
+              </span>
               {folders.length > 0
                 ? (
                   <>
@@ -225,28 +218,29 @@ const Gnb = ({
           </StyledLink>
         </ListMenu>
         <ListMenu>
-          <StyledLink to="/year" className={isYear ? 'active' : ''}>
+          <span>
             Years
             &nbsp;
             {folders.length > 0 ? <FaCaretDown /> : null}
-          </StyledLink>
-          {<SubMenu>
+          </span>
+          <SubMenu>
             <div>
               {folders.map((folder, i) => {
                 if (folder === '') {
                   return null;
                 }
+                const formattedName = folder.split("_").map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(" ").substring(0, folder.length - 1);
                 return (
                   <li key={i}>
-                    <Link to={`/year`} key={i} state={{folder: folder}}>
-                      {folder}
+                    <StyledLink to={`/year`} key={i} state={{folder: folder}}>
+                      {formattedName}
                       &nbsp;
-                    </Link>
+                    </StyledLink>
                   </li>
                 );
               })}
             </div>
-          </SubMenu>}
+          </SubMenu>
         </ListMenu>
         {/*{hasPortfolio ? (
           <ListMenu>

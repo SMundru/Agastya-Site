@@ -4,25 +4,7 @@ const siteMetadata = {
   title: TITLE,
   author: AUTHOR,
   homepage: SITE_URL,
-  siteUrl: SITE_URL,
-  menuLinks: [
-    {
-      name: 'home',
-      link: '/'
-    },
-    {
-      name: 'about',
-      link: '/about'
-    },
-    {
-      name: 'year',
-      link: '/year/:folderId'
-    },
-    {
-      name: 'blog',
-      link: '/blog'
-    },
-  ]
+  siteUrl: SITE_URL
 };
 
 module.exports = {

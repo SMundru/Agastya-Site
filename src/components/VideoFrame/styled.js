@@ -14,7 +14,7 @@ export const Tags = styled.div`
   }
 `;
 
-export const PostContent = styled.section`
+export const VideoDescription = styled.section`
   padding: 1em 0 4em;
   line-height: 1.6em;
 

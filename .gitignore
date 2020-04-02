@@ -34,9 +34,12 @@ nohup.out
 .venv/
 venv/
 ENV/
+AggysBlog.iml
 
 # cached files
 .cache/
 
 # generated files
 public/
+
+/.idea
