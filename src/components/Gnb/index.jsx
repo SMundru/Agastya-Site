@@ -68,12 +68,16 @@ const Gnb = ({
   isDracula
 }) => {
   const context = useContext(myContext);
-  if (!context.categoriesLoaded) {
-    fetch(`https://rv673fuek6.execute-api.eu-west-2.amazonaws.com/Dev/categories?bucket=agastya-encoded`)
+  if (!context.dataLoaded) {
+    fetch(`https://l27wt82pxc.execute-api.eu-west-2.amazonaws.com/dev/videos/details`)
         .then(response => response.json())
         .then(resultData => {
-          context.setCategories(resultData);
-          context.setCategoriesLoaded();
+          context.setDataLoaded();
+          const body = resultData.body;
+          context.setCategories(body.categories);
+          context.setYears(body.years);
+          context.setCategoryVideoMap(body.categoryVideoMap);
+          context.setYearVideoMap(body.yearVideoMap);
         })
   }
   const [{ isMenuOpened, isSubMenuClosed, searchKeyword }, dispatch] = useReducer(reducer, initialState);
@@ -124,15 +128,13 @@ const Gnb = ({
               <span onClick={toggleMenu}>
                 Years
               </span>{categories.length > 0
-                          ? (
-                              <>
+                          ? (<>
                                 &nbsp;
                                 <MovableFaCaretDown
                                     className={isSubMenuClosed ? 'is-active' : ''}
                                     onClick={toggleSubMenu}
                                 />
-                              </>
-                          )
+                              </>)
                           : null}
                       <SubMenu>
                         <div>
@@ -140,9 +142,6 @@ const Gnb = ({
                             if (folder === '') {
                               return null;
                             }
-
-                            console.log(folder)
-
                             return (
                                 <li key={folder}>
                                   <Link to={`/year`} onClick={toggleMenu} state={{folder: folder}}>
@@ -232,11 +231,10 @@ const Gnb = ({
                         if (folder === '') {
                           return null;
                         }
-                        const formattedName = folder.split("_").map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(" ").substring(0, folder.length - 1);
                         return (
                             <li key={i}>
                               <StyledLink to={`/year`} key={i} state={{folder: folder}}>
-                                {formattedName}
+                                {folder}
                                 &nbsp;
                               </StyledLink>
                             </li>
