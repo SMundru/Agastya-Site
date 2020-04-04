@@ -194,7 +194,7 @@ const Gnb = ({
                             }
                             return (
                                 <li key={folder}>
-                                  <Link to={`/videos`} onClick={toggleMenu} state={{folder: folder, division: 'category'}}>
+                                  <Link to={`/videos`} onClick={toggleMenu} state={{folder: folder, division: 'age'}}>
                                     {folder}
                                     &nbsp;
                                   </Link>
