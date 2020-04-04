@@ -27,7 +27,7 @@ const INPUT_KEYWORD = 'INPUT_KEYWORD';
 
 const initialState = {
   isMenuOpened: false,
-  isSubMenuClosed: false,
+  isCatSubMenuClosed: false,
   searchKeyword: '',
 };
 
@@ -42,11 +42,11 @@ const reducer = (state = initialState, action) => {
       };
     }
     case TOGGLE_SUB_MENU: {
-      const isSubMenuClosed = !state.isSubMenuClosed;
+      const isCatSubMenuClosed = !state.isCatSubMenuClosed;
 
       return {
         ...state,
-        isSubMenuClosed,
+        isCatSubMenuClosed,
       };
     }
     case INPUT_KEYWORD: {
@@ -80,7 +80,7 @@ const Gnb = ({
           context.setYearVideoMap(body.yearVideoMap);
         })
   }
-  const [{isMenuOpened, isSubMenuClosed, searchKeyword}, dispatch] = useReducer(reducer, initialState);
+  const [{isMenuOpened, isCatSubMenuClosed, searchKeyword}, dispatch] = useReducer(reducer, initialState);
   const toggleMenu = useCallback(() => {
     dispatch({type: TOGGLE_MENU});
   }, []);
@@ -116,7 +116,7 @@ const Gnb = ({
       <myContext.Consumer>
         {() => (
             <GnbWrapper>
-              <MobileMenu isActive={isMenuOpened} isSubActive={isSubMenuClosed}>
+              <MobileMenu isActive={isMenuOpened} isSubActive={isCatSubMenuClosed}>
                 <Background onClick={toggleMenu} isActive={isMenuOpened}/>
                 <MobileMenus>
                   <ul>
@@ -132,7 +132,7 @@ const Gnb = ({
                           ? (<>
                                 &nbsp;
                                 <MovableFaCaretDown
-                                    className={isSubMenuClosed ? 'is-active' : ''}
+                                    className={isCatSubMenuClosed ? 'is-active' : ''}
                                     onClick={toggleSubMenu}
                                 />
                               </>)
@@ -221,8 +221,13 @@ const Gnb = ({
                   </StyledLink>
                 </ListMenu>
                 <ListMenu>
+                  <StyledLink to="/about" className={isAbout ? 'active' : ''}>
+                    About
+                  </StyledLink>
+                </ListMenu>
+                <ListMenu>
           <span>
-            Years
+            Categories
             &nbsp;
             {categories.length > 0 ? <FaCaretDown/> : null}
           </span>
@@ -244,6 +249,30 @@ const Gnb = ({
                     </div>
                   </SubMenu>
                 </ListMenu>
+                <ListMenu>
+          <span>
+            Age
+            &nbsp;
+            {years.length > 0 ? <FaCaretDown/> : null}
+          </span>
+                  <SubMenu>
+                    <div>
+                      {years.map((folder, i) => {
+                        if (folder === '') {
+                          return null;
+                        }
+                        return (
+                            <li key={i}>
+                              <StyledLink to={`/videos`} key={i} state={{folder: folder, division: 'age'}}>
+                                {folder}
+                                &nbsp;
+                              </StyledLink>
+                            </li>
+                        );
+                      })}
+                    </div>
+                  </SubMenu>
+                </ListMenu>
                 {/*{hasPortfolio ? (
           <ListMenu>
             <StyledLink to="/portfolios" className={isYear ? 'active' : ''}>
@@ -251,11 +280,7 @@ const Gnb = ({
             </StyledLink>
           </ListMenu>
         ) : null}*/}
-                <ListMenu>
-                  <StyledLink to="/about" className={isAbout ? 'active' : ''}>
-                    About
-                  </StyledLink>
-                </ListMenu>
+
               </List>
               <SearchBarWrapper>
                 <label htmlFor="search">
