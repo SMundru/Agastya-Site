@@ -50,7 +50,7 @@ const reducer = (state = initialState, action) => {
       };
     }
     case INPUT_KEYWORD: {
-      const { searchKeyword } = action;
+      const {searchKeyword} = action;
 
       return {
         ...state,
@@ -63,10 +63,10 @@ const reducer = (state = initialState, action) => {
 };
 
 const Gnb = ({
-  location,
-  toggleTheme,
-  isDracula
-}) => {
+               location,
+               toggleTheme,
+               isDracula
+             }) => {
   const context = useContext(myContext);
   if (!context.dataLoaded) {
     fetch(`https://l27wt82pxc.execute-api.eu-west-2.amazonaws.com/dev/videos/details`)
@@ -80,12 +80,12 @@ const Gnb = ({
           context.setYearVideoMap(body.yearVideoMap);
         })
   }
-  const [{ isMenuOpened, isSubMenuClosed, searchKeyword }, dispatch] = useReducer(reducer, initialState);
+  const [{isMenuOpened, isSubMenuClosed, searchKeyword}, dispatch] = useReducer(reducer, initialState);
   const toggleMenu = useCallback(() => {
-    dispatch({ type: TOGGLE_MENU });
+    dispatch({type: TOGGLE_MENU});
   }, []);
   const toggleSubMenu = useCallback(() => {
-    dispatch({ type: TOGGLE_SUB_MENU });
+    dispatch({type: TOGGLE_SUB_MENU});
   }, []);
   const navigateToPath = useCallback((path) => {
     navigate(path);
@@ -93,10 +93,10 @@ const Gnb = ({
   const inputKeyword = useCallback((e) => {
     const searchKeyword = e.target.value;
 
-    dispatch({ type: INPUT_KEYWORD, searchKeyword });
+    dispatch({type: INPUT_KEYWORD, searchKeyword});
   });
 
-  const { pathname } = location;
+  const {pathname} = location;
   const isYear = pathname.replace(/\/$/, '').startsWith('/year');
   const isHome = pathname.replace(/\/$/, '') === '';
   const isAbout = pathname.replace(/\/$/, '') === '/about';
@@ -111,6 +111,7 @@ const Gnb = ({
   }, [isMenuOpened]);
 
   const categories = context.categories;
+  const years = context.years;
   return (
       <myContext.Consumer>
         {() => (
@@ -125,39 +126,69 @@ const Gnb = ({
                       </StyledLink>
                     </ListMenu>
                     <ListMenu>
-              <span onClick={toggleMenu}>
-                Years
-              </span>{categories.length > 0
-                          ? (<>
-                                &nbsp;
-                                <MovableFaCaretDown
-                                    className={isSubMenuClosed ? 'is-active' : ''}
-                                    onClick={toggleSubMenu}
-                                />
-                              </>)
-                          : null}
+                        <StyledLink to="/about" className={isAbout ? 'active' : ''} onClick={toggleMenu}>
+                          About
+                        </StyledLink>
+                      </ListMenu>
+                    <ListMenu>
+                      <span onClick={toggleMenu}>
+                      Categories
+                      </span>{categories.length > 0
+                        ? (<>
+                          &nbsp;
+                          <MovableFaCaretDown
+                              className={isSubMenuClosed ? 'is-active' : ''}
+                              onClick={toggleSubMenu}
+                          />
+                        </>)
+                        : null}
                       <SubMenu>
-                        <div>
+                        <ul>
                           {categories.map(folder => {
                             if (folder === '') {
                               return null;
                             }
                             return (
                                 <li key={folder}>
-                                  <Link to={`/year`} onClick={toggleMenu} state={{folder: folder}}>
+                                  <Link to={`/videos`} onClick={toggleMenu} state={{folder: folder, division: 'category'}}>
                                     {folder}
                                     &nbsp;
                                   </Link>
                                 </li>
                             );
                           })}
-                        </div>
+                        </ul>
                       </SubMenu>
                     </ListMenu>
                     <ListMenu>
-                      <StyledLink to="/about" className={isAbout ? 'active' : ''} onClick={toggleMenu}>
-                        About
-                      </StyledLink>
+                    <span onClick={toggleMenu}>
+                    Age
+                    </span>{years.length > 0
+                        ? (<>
+                          &nbsp;
+                          <MovableFaCaretDown
+                              className={isSubMenuClosed ? 'is-active' : ''}
+                              onClick={toggleSubMenu}
+                          />
+                        </>)
+                        : null}
+                      <SubMenu>
+                        <ul>
+                          {years.map(folder => {
+                            if (folder === '') {
+                              return null;
+                            }
+                            return (
+                                <li key={folder}>
+                                  <Link to={`/videos`} onClick={toggleMenu} state={{folder: folder, division: 'age'}}>
+                                    {folder-2015}
+                                    &nbsp;
+                                  </Link>
+                                </li>
+                            );
+                          })}
+                        </ul>
+                      </SubMenu>
                     </ListMenu>
                     <SearchBarWrapper>
                       <label htmlFor="search">
@@ -220,40 +251,57 @@ const Gnb = ({
                   </StyledLink>
                 </ListMenu>
                 <ListMenu>
-          <span>
-            Years
-            &nbsp;
-            {categories.length > 0 ? <FaCaretDown/> : null}
-          </span>
+                  <StyledLink to="/about" className={isAbout ? 'active' : ''}>
+                    About
+                  </StyledLink>
+                </ListMenu>
+                <ListMenu>
+                <span>
+                Categories
+                  &nbsp;
+                  {categories.length > 0 ? <FaCaretDown/> : null}
+                </span>
                   <SubMenu>
-                    <div>
+                    <ul>
                       {categories.map((folder, i) => {
                         if (folder === '') {
                           return null;
                         }
                         return (
                             <li key={i}>
-                              <StyledLink to={`/year`} key={i} state={{folder: folder}}>
+                              <StyledLink to={`/videos`} key={i} state={{folder: folder, division: 'category'}}>
                                 {folder}
                                 &nbsp;
                               </StyledLink>
                             </li>
                         );
                       })}
-                    </div>
+                    </ul>
                   </SubMenu>
                 </ListMenu>
-                {/*{hasPortfolio ? (
-          <ListMenu>
-            <StyledLink to="/portfolios" className={isYear ? 'active' : ''}>
-              Blog
-            </StyledLink>
-          </ListMenu>
-        ) : null}*/}
                 <ListMenu>
-                  <StyledLink to="/about" className={isAbout ? 'active' : ''}>
-                    About
-                  </StyledLink>
+                <span>
+                  Age
+                  &nbsp;
+                  {years.length > 0 ? <FaCaretDown/> : null}
+                </span>
+                  <SubMenu>
+                    <ul>
+                      {years.map((folder, i) => {
+                        if (folder === '') {
+                          return null;
+                        }
+                        return (
+                            <li key={i}>
+                              <StyledLink to={`/videos`} key={i} state={{folder: folder, division: 'age'}}>
+                                {folder-2016 + ' Years'}
+                                &nbsp;
+                              </StyledLink>
+                            </li>
+                        );
+                      })}
+                    </ul>
+                  </SubMenu>
                 </ListMenu>
               </List>
               <SearchBarWrapper>
@@ -296,7 +344,7 @@ const Gnb = ({
 };
 
 Gnb.propTypes = {
-  location: PropTypes.shape({ pathname: PropTypes.string.isRequired }).isRequired,
+  location: PropTypes.shape({pathname: PropTypes.string.isRequired}).isRequired,
   toggleTheme: PropTypes.func.isRequired,
   isDracula: PropTypes.bool.isRequired
 };

@@ -21,3 +21,6 @@ exports.PROFILE = 'https://card-stack.co.uk';
 
 // Social
 exports.YOUTUBE_ID = 'UCtNzVGXIajc_tkb94VXKa4A';
+exports.INSTAGRAM_ID = 'agastya_superkid';
+
+

@@ -3,12 +3,13 @@ import {ControlBar, Player} from 'video-react'
 import poster from "./orange.png"
 import {VideoDescription} from "./styled";
 
-const VideoFrame = ({url, title}) => {
-    return (<div><Player src={url} poster={poster} preload='none' playsInline={true}>
+const VideoFrame = ({detail}) => {
+    return (<div><Player src={detail.VideoUrl.S} poster={detail.PosterUrl.S} preload='none' playsInline={true}>
         <ControlBar autoHide={true}/>
     </Player>
     <VideoDescription>
-        <blockquote>{title}</blockquote>
+        <h3>{detail.DisplayName.S}</h3>
+        <p>{detail.Description.S}</p>
     </VideoDescription></div>)
 };
 
