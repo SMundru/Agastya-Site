@@ -80,12 +80,12 @@ const Gnb = ({
           context.setYearVideoMap(body.yearVideoMap);
         })
   }
-  const [{ isMenuOpened, isSubMenuClosed, searchKeyword }, dispatch] = useReducer(reducer, initialState);
+  const [{isMenuOpened, isSubMenuClosed, searchKeyword}, dispatch] = useReducer(reducer, initialState);
   const toggleMenu = useCallback(() => {
-    dispatch({ type: TOGGLE_MENU });
+    dispatch({type: TOGGLE_MENU});
   }, []);
   const toggleSubMenu = useCallback(() => {
-    dispatch({ type: TOGGLE_SUB_MENU });
+    dispatch({type: TOGGLE_SUB_MENU});
   }, []);
   const navigateToPath = useCallback((path) => {
     navigate(path);
@@ -93,10 +93,10 @@ const Gnb = ({
   const inputKeyword = useCallback((e) => {
     const searchKeyword = e.target.value;
 
-    dispatch({ type: INPUT_KEYWORD, searchKeyword });
+    dispatch({type: INPUT_KEYWORD, searchKeyword});
   });
 
-  const { pathname } = location;
+  const {pathname} = location;
   const isYear = pathname.replace(/\/$/, '').startsWith('/year');
   const isHome = pathname.replace(/\/$/, '') === '';
   const isAbout = pathname.replace(/\/$/, '') === '/about';
@@ -111,6 +111,7 @@ const Gnb = ({
   }, [isMenuOpened]);
 
   const categories = context.categories;
+  const years = context.years;
   return (
       <myContext.Consumer>
         {() => (
@@ -137,21 +138,21 @@ const Gnb = ({
                               </>)
                           : null}
                       <SubMenu>
-                        <div>
+                        <ul>
                           {categories.map(folder => {
                             if (folder === '') {
                               return null;
                             }
                             return (
                                 <li key={folder}>
-                                  <Link to={`/year`} onClick={toggleMenu} state={{folder: folder}}>
+                                  <Link to={`/videos`} onClick={toggleMenu} state={{folder: folder, division: 'category'}}>
                                     {folder}
                                     &nbsp;
                                   </Link>
                                 </li>
                             );
                           })}
-                        </div>
+                        </ul>
                       </SubMenu>
                     </ListMenu>
                     <ListMenu>
@@ -233,7 +234,7 @@ const Gnb = ({
                         }
                         return (
                             <li key={i}>
-                              <StyledLink to={`/year`} key={i} state={{folder: folder}}>
+                              <StyledLink to={`/videos`} key={i} state={{folder: folder, division: 'category'}}>
                                 {folder}
                                 &nbsp;
                               </StyledLink>
@@ -296,7 +297,7 @@ const Gnb = ({
 };
 
 Gnb.propTypes = {
-  location: PropTypes.shape({ pathname: PropTypes.string.isRequired }).isRequired,
+  location: PropTypes.shape({pathname: PropTypes.string.isRequired}).isRequired,
   toggleTheme: PropTypes.func.isRequired,
   isDracula: PropTypes.bool.isRequired
 };

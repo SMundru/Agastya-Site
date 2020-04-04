@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { FaPrint, FaFacebook, FaYoutube } from 'react-icons/fa';
+import { FaFacebook, FaYoutube, FaInstagram} from 'react-icons/fa';
 import Clearfix from '~/components/Common/Clearfix';
-import { PREFIX, AUTHOR, EMAIL, FACEBOOK_ID, YOUTUBE_ID} from '~/constants';
+import { PREFIX, AUTHOR, EMAIL, FACEBOOK_ID, YOUTUBE_ID, INSTAGRAM_ID} from '~/constants';
 import * as profileUrl from '~/resources/images/orange.png';
-import { Wrapper, BasicInformation, SocialInformation, MDInformation, Button } from './styled';
+import { Wrapper, BasicInformation, SocialInformation, MDInformation } from './styled';
 
 const About = ({
   data: {
@@ -42,12 +42,6 @@ const About = ({
           </title>
           <meta name="og:title" content={`${PREFIX}ABOUT`} />
         </Helmet>
-        <Clearfix>
-          <Button type="button" onClick={printPage}>
-            <FaPrint />
-            Print
-          </Button>
-        </Clearfix>
         <BasicInformation>
           <img
             src={profileUrl.default}
@@ -79,6 +73,15 @@ const About = ({
                   rel="noreferrer noopener"
               >
                 <FaYoutube />
+              </a>
+          ) : null}
+          {INSTAGRAM_ID ? (
+              <a
+                  href={`https://www.instagram.com/${INSTAGRAM_ID}/`}
+                  target="_blank"
+                  rel="noreferrer noopener"
+              >
+                <FaInstagram />
               </a>
           ) : null}
         </SocialInformation>

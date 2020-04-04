@@ -58,7 +58,7 @@ export const MDInformation = styled.section`
 
   ul {
     margin: 16px 0 0;
-    padding: 0 0 0 20px;
+    padding: 0 0 5px 20px;
     line-height: 2em;
     list-style: disc;
   }

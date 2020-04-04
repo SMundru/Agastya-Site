@@ -83,7 +83,7 @@ module.exports = {
       },
     },
     {
-      files: ['src/components/About/year.jsx', 'src/components/Portfolio/year.jsx', 'src/components/Post/year.jsx', 'src/templates/*.jsx'],
+      files: ['src/components/About/videos.jsx', 'src/components/Portfolio/videos.jsx', 'src/components/Post/videos.jsx', 'src/templates/*.jsx'],
       rules: {
         'react/no-danger': off,
       },
