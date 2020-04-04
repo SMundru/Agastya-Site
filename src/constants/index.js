@@ -7,7 +7,7 @@ exports.ABOUT = 'about';
 
 // Site Information
 exports.NAME = 'Aggy\'s Blog';
-exports.TITLE = 'Aggy\'s Blog';
+exports.TITLE = 'AGGY\'S WORLD';
 exports.PREFIX = 'AGGY\'S WORLD | ';
 exports.DESCRIPTION = 'Take a peek in to my magical world!';
 exports.AUTHOR = 'Agastya the Wonder Kid';
