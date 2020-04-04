@@ -22,12 +22,14 @@ import {
 import {myContext} from "../App/AppContext";
 
 const TOGGLE_MENU = 'TOGGLE_MENU';
-const TOGGLE_SUB_MENU = 'TOGGLE_SUB_MENU';
+const TOGGLE_CAT_SUB_MENU = 'TOGGLE_CAT_SUB_MENU';
+const TOGGLE_AGE_SUB_MENU = 'TOGGLE_AGE_SUB_MENU';
 const INPUT_KEYWORD = 'INPUT_KEYWORD';
 
 const initialState = {
   isMenuOpened: false,
   isCatSubMenuClosed: false,
+  isAgeSubMenuClosed: false,
   searchKeyword: '',
 };
 
@@ -41,7 +43,7 @@ const reducer = (state = initialState, action) => {
         isMenuOpened,
       };
     }
-    case TOGGLE_SUB_MENU: {
+    case TOGGLE_CAT_SUB_MENU: {
       const isCatSubMenuClosed = !state.isCatSubMenuClosed;
 
       return {
@@ -49,8 +51,17 @@ const reducer = (state = initialState, action) => {
         isCatSubMenuClosed,
       };
     }
+
+    case TOGGLE_AGE_SUB_MENU: {
+      const isAgeSubMenuClosed = !state.isAgeSubMenuClosed;
+
+      return {
+        ...state,
+        isAgeSubMenuClosed,
+      };
+    }
     case INPUT_KEYWORD: {
-      const { searchKeyword } = action;
+      const {searchKeyword} = action;
 
       return {
         ...state,
@@ -63,10 +74,10 @@ const reducer = (state = initialState, action) => {
 };
 
 const Gnb = ({
-  location,
-  toggleTheme,
-  isDracula
-}) => {
+               location,
+               toggleTheme,
+               isDracula
+             }) => {
   const context = useContext(myContext);
   if (!context.dataLoaded) {
     fetch(`https://l27wt82pxc.execute-api.eu-west-2.amazonaws.com/dev/videos/details`)
@@ -80,12 +91,15 @@ const Gnb = ({
           context.setYearVideoMap(body.yearVideoMap);
         })
   }
-  const [{isMenuOpened, isCatSubMenuClosed, searchKeyword}, dispatch] = useReducer(reducer, initialState);
+  const [{isMenuOpened, isCatSubMenuClosed, isAgeSubMenuClosed, searchKeyword}, dispatch] = useReducer(reducer, initialState);
   const toggleMenu = useCallback(() => {
     dispatch({type: TOGGLE_MENU});
   }, []);
-  const toggleSubMenu = useCallback(() => {
-    dispatch({type: TOGGLE_SUB_MENU});
+  const toggleCatSubMenu = useCallback(() => {
+    dispatch({type: TOGGLE_CAT_SUB_MENU});
+  }, []);
+  const toggleAgeSubMenu = useCallback(() => {
+    dispatch({type: TOGGLE_AGE_SUB_MENU});
   }, []);
   const navigateToPath = useCallback((path) => {
     navigate(path);
@@ -97,10 +111,10 @@ const Gnb = ({
   });
 
   const {pathname} = location;
-  const isYear = pathname.replace(/\/$/, '').startsWith('/year');
+  const isVideos = pathname.replace(/\/$/, '')==='/videos';
   const isHome = pathname.replace(/\/$/, '') === '';
   const isAbout = pathname.replace(/\/$/, '') === '/about';
-  const isBlog = !(isYear || isHome || isAbout);
+  const isBlog = !(isVideos || isHome || isAbout);
 
   useEffect(() => {
     if (isMenuOpened) {
@@ -116,7 +130,7 @@ const Gnb = ({
       <myContext.Consumer>
         {() => (
             <GnbWrapper>
-              <MobileMenu isActive={isMenuOpened} isSubActive={isCatSubMenuClosed}>
+              <MobileMenu isActive={isMenuOpened}>
                 <Background onClick={toggleMenu} isActive={isMenuOpened}/>
                 <MobileMenus>
                   <ul>
@@ -126,19 +140,24 @@ const Gnb = ({
                       </StyledLink>
                     </ListMenu>
                     <ListMenu>
-              <span onClick={toggleMenu}>
-                Years
+                      <StyledLink to="/about" className={isAbout ? 'active' : ''} onClick={toggleMenu}>
+                        About
+                      </StyledLink>
+                    </ListMenu>
+                    <ListMenu>
+              <span onClick={toggleCatSubMenu}>
+                Categories
               </span>{categories.length > 0
-                          ? (<>
-                                &nbsp;
-                                <MovableFaCaretDown
-                                    className={isCatSubMenuClosed ? 'is-active' : ''}
-                                    onClick={toggleSubMenu}
-                                />
-                              </>)
-                          : null}
-                      <SubMenu>
-                        <ul>
+                        ? (<>
+                          &nbsp;
+                          <MovableFaCaretDown
+                              className={isCatSubMenuClosed ? 'is-active' : ''}
+                              onClick={toggleCatSubMenu}
+                          />
+                        </>)
+                        : null}
+                      <SubMenu isActive={isCatSubMenuClosed}>
+                        <div>
                           {categories.map(folder => {
                             if (folder === '') {
                               return null;
@@ -152,13 +171,38 @@ const Gnb = ({
                                 </li>
                             );
                           })}
-                        </ul>
+                        </div>
                       </SubMenu>
                     </ListMenu>
                     <ListMenu>
-                      <StyledLink to="/about" className={isAbout ? 'active' : ''} onClick={toggleMenu}>
-                        About
-                      </StyledLink>
+              <span onClick={toggleAgeSubMenu}>
+                Age
+              </span>{years.length > 0
+                        ? (<>
+                          &nbsp;
+                          <MovableFaCaretDown
+                              className={isAgeSubMenuClosed ? 'is-active' : ''}
+                              onClick={toggleAgeSubMenu}
+                          />
+                        </>)
+                        : null}
+                      <SubMenu isActive={isAgeSubMenuClosed}>
+                        <div>
+                          {years.map(folder => {
+                            if (folder === '') {
+                              return null;
+                            }
+                            return (
+                                <li key={folder}>
+                                  <Link to={`/videos`} onClick={toggleMenu} state={{folder: folder, division: 'category'}}>
+                                    {folder}
+                                    &nbsp;
+                                  </Link>
+                                </li>
+                            );
+                          })}
+                        </div>
+                      </SubMenu>
                     </ListMenu>
                     <SearchBarWrapper>
                       <label htmlFor="search">
@@ -226,7 +270,7 @@ const Gnb = ({
                   </StyledLink>
                 </ListMenu>
                 <ListMenu>
-          <span>
+          <span className={isVideos ? 'active' : ''}>
             Categories
             &nbsp;
             {categories.length > 0 ? <FaCaretDown/> : null}
@@ -273,14 +317,6 @@ const Gnb = ({
                     </div>
                   </SubMenu>
                 </ListMenu>
-                {/*{hasPortfolio ? (
-          <ListMenu>
-            <StyledLink to="/portfolios" className={isYear ? 'active' : ''}>
-              Blog
-            </StyledLink>
-          </ListMenu>
-        ) : null}*/}
-
               </List>
               <SearchBarWrapper>
                 <label htmlFor="search">
@@ -293,28 +329,6 @@ const Gnb = ({
                     onChange={inputKeyword}
                 />
               </SearchBarWrapper>
-              {/*<SearchedPosts isEmpty={filteredPosts.length === 0}>*/}
-              {/*  {filteredPosts.map(({ path, title, summary, tags }) => (*/}
-              {/*    <SearchedPost key={path}>*/}
-              {/*      <Title onClick={() => { navigateToPath(path); }}>*/}
-              {/*        {title}*/}
-              {/*      </Title>*/}
-              {/*      <Summary onClick={() => { navigateToPath(path); }}>*/}
-              {/*        {summary}*/}
-              {/*      </Summary>*/}
-              {/*      {tags.length > 0 ? (*/}
-              {/*        <FaTags />*/}
-              {/*      ) : null}*/}
-              {/*      {[...new Set(tags)].map(tag => (*/}
-              {/*        <Tag key={tag} onClick={() => { navigateToPath(`/tags/${tag}/1`); }}>*/}
-              {/*          <small>*/}
-              {/*            {tag}*/}
-              {/*          </small>*/}
-              {/*        </Tag>*/}
-              {/*      ))}*/}
-              {/*    </SearchedPost>*/}
-              {/*  ))}*/}
-              {/*</SearchedPosts>*/}
             </GnbWrapper>)
         }
       </myContext.Consumer>

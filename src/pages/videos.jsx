@@ -27,7 +27,7 @@ const Videos = ({location}) => {
             <Layout location={location}>
                 <Helmet>
                     <title>
-                        {`${PREFIX}${folder.toUpperCase()}`}
+                        {`${PREFIX} VIDEOS | ${folder.toUpperCase()}`}
                     </title>
                     <meta name="og:title" content={`${PREFIX}${folder.toUpperCase()}`}/>
                 </Helmet>

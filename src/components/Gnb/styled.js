@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
-import { Link } from 'gatsby';
-import { FaCaretDown, FaHome } from 'react-icons/fa';
-import { PRIMARY_COLOR } from '~/components/Common/constants';
+import styled, {css} from 'styled-components';
+import {Link} from 'gatsby';
+import {FaCaretDown, FaHome} from 'react-icons/fa';
+import {PRIMARY_COLOR} from '~/components/Common/constants';
 
 export const Hamburger = styled.div`
   position: fixed;
@@ -89,6 +89,17 @@ export const SubMenu = styled.ul`
     color: ${PRIMARY_COLOR};
     text-decoration: underline;
   }
+  
+   @media (max-width: 414px) {
+      position: static;
+      max-height: ${({isActive}) => (isActive ? '0' : '360px')} !important;
+
+      li {
+        @media (max-width: 414px) {
+          padding: 0 0 0 16px;
+        }
+      }
+   }
 `;
 
 export const ListMenu = styled.li`
@@ -336,9 +347,6 @@ export const MobileMenu = styled.section`
     width: 100%;
 
     & > ul {
-      position: static;
-      max-height: ${({ isSubActive }) => (isSubActive ? '0' : '360px')} !important;
-
       li {
         @media (max-width: 414px) {
           padding: 0 0 0 16px;
