@@ -33,7 +33,7 @@ const Videos = ({ location }) => {
   useEffect(() => {
     if (typeof videos === 'undefined' || videos.length === 0) {
       return navigate('/');
-    } return null;
+    } return function () {};
   });
 
   return (
