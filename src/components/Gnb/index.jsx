@@ -1,12 +1,12 @@
 import React, { useCallback, useContext, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
 import Toggle from 'react-toggle';
 import { FaCaretDown, FaSearch } from 'react-icons/fa';
 import {
   Background,
   GnbWrapper,
   Hamburger,
+  HightlightableSpan,
   Home,
   List,
   ListMenu,
@@ -110,10 +110,13 @@ const Gnb = ({
     dispatch({ type: INPUT_KEYWORD, searchKeyword });
   });
 
-  const { pathname } = location;
+  const { pathname, state } = location;
+  const { division, folder: folderInState } = state || {};
   const isVideos = pathname.replace(/\/$/, '') === '/videos';
   const isHome = pathname.replace(/\/$/, '') === '';
   const isAbout = pathname.replace(/\/$/, '') === '/about';
+  const isCategories = isVideos && division === 'category';
+  const isAges = isVideos && division === 'age';
 
   useEffect(() => {
     if (isMenuOpened) {
@@ -149,18 +152,15 @@ const Gnb = ({
                   </StyledLink>
                 </ListMenu>
                 <ListMenu>
-                  <span role="button" onClick={toggleCatSubMenu} onKeyDown={toggleCatSubMenu} tabIndex={0}>
+                  <HightlightableSpan role="button" onClick={toggleCatSubMenu} onKeyDown={toggleCatSubMenu} tabIndex={0} isActive={isCategories}>
                     Categories
-                  </span>
+                  </HightlightableSpan>
                   {categories.length > 0
                     ? (
-                      <>
-                          &nbsp;
-                        <MovableFaCaretDown
-                          className={isCatSubMenuClosed ? 'is-active' : ''}
-                          onClick={toggleCatSubMenu}
-                        />
-                      </>
+                      <MovableFaCaretDown
+                        className={isCatSubMenuClosed ? 'is-active' : ''}
+                        onClick={toggleCatSubMenu}
+                      />
                     )
                     : null}
                   <SubMenu isActive={isCatSubMenuClosed}>
@@ -171,10 +171,10 @@ const Gnb = ({
                         }
                         return (
                           <li key={folder}>
-                            <Link to="/videos" onClick={toggleMenu} state={{ folder, division: 'category' }}>
+                            <StyledLink to="/videos" onClick={toggleMenu} state={{ folder, division: 'category' }} className={folder === folderInState ? 'active' : ''}>
                               {folder}
                                     &nbsp;
-                            </Link>
+                            </StyledLink>
                           </li>
                         );
                       })}
@@ -182,13 +182,13 @@ const Gnb = ({
                   </SubMenu>
                 </ListMenu>
                 <ListMenu>
-                  <span role="button" onClick={toggleAgeSubMenu} onKeyDown={toggleCatSubMenu} tabIndex={0}>
+                  <HightlightableSpan role="button" onClick={toggleAgeSubMenu} onKeyDown={toggleCatSubMenu} tabIndex={0} isActive={isAges}>
                     Age
-                  </span>
+                  </HightlightableSpan>
                   {years.length > 0
                     ? (
                       <>
-                          &nbsp;
+&nbsp;
                         <MovableFaCaretDown
                           className={isAgeSubMenuClosed ? 'is-active' : ''}
                           onClick={toggleAgeSubMenu}
@@ -204,10 +204,10 @@ const Gnb = ({
                         }
                         return (
                           <li key={folder}>
-                            <Link to="/videos" onClick={toggleMenu} state={{ folder, division: 'age' }}>
+                            <StyledLink to="/videos" onClick={toggleMenu} state={{ folder, division: 'age' }} className={folder === folderInState ? 'active' : ''}>
                               {folder}
                                     &nbsp;
-                            </Link>
+                            </StyledLink>
                           </li>
                         );
                       })}
@@ -248,7 +248,7 @@ const Gnb = ({
           </Hamburger>
           <List>
             <ListMenu>
-              <StyledLink to="/">
+              <StyledLink to="/" className={isHome ? 'active' : ''}>
                 <Home />
               </StyledLink>
             </ListMenu>
@@ -258,11 +258,10 @@ const Gnb = ({
               </StyledLink>
             </ListMenu>
             <ListMenu>
-              <span className={isVideos ? 'active' : ''}>
+              <StyledLink className={isCategories ? 'active' : ''} to="/">
                 Categories
-                &nbsp;
                 {categories.length > 0 ? <FaCaretDown /> : null}
-              </span>
+              </StyledLink>
               <SubMenu>
                 <div>
                   {categories.map((folder) => {
@@ -271,9 +270,8 @@ const Gnb = ({
                     }
                     return (
                       <li key={folder}>
-                        <StyledLink to="/videos" key={folder} state={{ folder, division: 'category' }}>
+                        <StyledLink to="/videos" key={folder} state={{ folder, division: 'category' }} className={folder === folderInState ? 'active' : ''}>
                           {folder}
-                                &nbsp;
                         </StyledLink>
                       </li>
                     );
@@ -282,11 +280,10 @@ const Gnb = ({
               </SubMenu>
             </ListMenu>
             <ListMenu>
-              <span>
+              <StyledLink className={isAges ? 'active' : ''} to="/">
                 Age
-                &nbsp;
                 {years.length > 0 ? <FaCaretDown /> : null}
-              </span>
+              </StyledLink>
               <SubMenu>
                 <div>
                   {years.map((folder) => {
@@ -295,9 +292,8 @@ const Gnb = ({
                     }
                     return (
                       <li key={folder}>
-                        <StyledLink to="/videos" key={folder} state={{ folder, division: 'age' }}>
+                        <StyledLink to="/videos" key={folder} state={{ folder, division: 'age' }} className={folder === folderInState ? 'active' : ''}>
                           {folder}
-                                &nbsp;
                         </StyledLink>
                       </li>
                     );
@@ -324,7 +320,10 @@ const Gnb = ({
 };
 
 Gnb.propTypes = {
-  location: PropTypes.shape({ pathname: PropTypes.string.isRequired }).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+    state: PropTypes.object,
+  }).isRequired,
   toggleTheme: PropTypes.func.isRequired,
   isDracula: PropTypes.bool.isRequired,
 };

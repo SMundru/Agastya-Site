@@ -1,7 +1,7 @@
-import styled, {css} from 'styled-components';
-import {Link} from 'gatsby';
-import {FaCaretDown, FaHome} from 'react-icons/fa';
-import {PRIMARY_COLOR} from '~/components/Common/constants';
+import styled, { css } from 'styled-components';
+import { Link } from 'gatsby';
+import { FaCaretDown, FaHome } from 'react-icons/fa';
+import { PRIMARY_COLOR } from '~/components/Common/constants';
 
 export const Hamburger = styled.div`
   position: fixed;
@@ -92,7 +92,7 @@ export const SubMenu = styled.ul`
   
    @media (max-width: 414px) {
       position: static;
-      max-height: ${({isActive}) => (isActive ? '0' : '360px')} !important;
+      max-height: ${({ isActive }) => (isActive ? '0' : '360px')} !important;
 
       li {
         @media (max-width: 414px) {
@@ -147,7 +147,7 @@ export const StyledLink = styled(Link)`
 
   &.active {
     color: ${PRIMARY_COLOR};
-    text-decoration: underline;
+    text-decoration: underline; 
   }
 
   &:hover {
@@ -360,6 +360,11 @@ export const MobileMenu = styled.section`
     box-shadow: ${({ isActive }) => (isActive ? '0 2px 4px rgba(0,0,0,0.2)' : '0 0 0')};
     box-shadow: ${({ isActive }) => (isActive ? '0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08)' : '0 0 0')};
   }
+`;
+
+export const HightlightableSpan = styled.span`
+        cursor:pointer;
+        text-decoration:${({ isActive }) => (isActive ? 'underline' : '')}; !important
 `;
 
 export const ToggleWrapper = styled.label`
