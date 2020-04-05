@@ -81,7 +81,7 @@ const Gnb = ({
   const context = useContext(myContext);
   if (typeof context !== 'undefined') {
     const { dataLoaded } = context;
-    if (dataLoaded) {
+    if (!dataLoaded) {
       fetch('https://l27wt82pxc.execute-api.eu-west-2.amazonaws.com/dev/videos/details')
         .then((response) => response.json())
         .then((resultData) => {

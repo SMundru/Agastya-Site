@@ -13,7 +13,8 @@ import { myContext } from '../components/App/AppContext';
 
 const Videos = ({ location }) => {
   let folder; let division; let route;
-  if (typeof location !== 'undefined' && typeof location.state !== 'undefined') {
+  const { state } = location;
+  if (typeof state !== 'undefined' && state !== null && typeof state.folder !== 'undefined' && typeof state.division !== 'undefined') {
     ({ folder, division } = location.state);
     route = `${folder.toUpperCase()}`;
   }
@@ -37,31 +38,35 @@ const Videos = ({ location }) => {
 
   return (
     <myContext.Consumer>
-      <Layout location={location}>
-        <Helmet>
-          <title>
-            {`${PREFIX} VIDEOS | ${route}`}
-          </title>
-          <meta name="og:title" content={`${PREFIX}${route}`} />
-        </Helmet>
-        <PostsWrapper>
-          <Row>
-            {typeof videos !== 'undefined' && videos.map((object) => {
-              if (typeof object === 'undefined') {
-                return null;
-              }
-              return (
-                <Col key={object.S3Name.S}>
-                  <PostContent>
-                    <VideoFrame detail={object} />
-                  </PostContent>
-                </Col>
-              );
-            })}
-          </Row>
-        </PostsWrapper>
-        <Pagination postCount={1} location={location} />
-      </Layout>
+      {
+        () => (
+          <Layout location={location}>
+            <Helmet>
+              <title>
+                {`${PREFIX} VIDEOS | ${route}`}
+              </title>
+              <meta name="og:title" content={`${PREFIX}${route}`} />
+            </Helmet>
+            <PostsWrapper>
+              <Row>
+                {typeof videos !== 'undefined' && videos.map((object) => {
+                  if (typeof object === 'undefined') {
+                    return null;
+                  }
+                  return (
+                    <Col key={object.S3Name.S}>
+                      <PostContent>
+                        <VideoFrame detail={object} />
+                      </PostContent>
+                    </Col>
+                  );
+                })}
+              </Row>
+            </PostsWrapper>
+            <Pagination postCount={1} location={location} />
+          </Layout>
+        )
+      }
     </myContext.Consumer>
   );
 };
