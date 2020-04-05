@@ -69,7 +69,7 @@ export const ImageWrapper = styled.figure`
     right: 0;
     left: 0;
     margin: auto;
-    width: 100%;
+    width: 300px;
     height: auto;
   }
 `;
