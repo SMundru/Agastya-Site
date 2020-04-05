@@ -85,10 +85,13 @@ const About = ({
             ) : null}
           </SocialInformation>
           <MDInformation>
-            <div
-              ref={$mdWrapper}
-              dangerouslySetInnerHTML={{ __html: dompurify.sanitize(html) }}
-            />
+            {typeof dompurify !== 'undefined' && typeof dompurify.sanitize !== 'undefined'
+              ? (
+                <div
+                  ref={$mdWrapper}
+                  dangerouslySetInnerHTML={{ __html: dompurify.sanitize(html) }}
+                />
+              ) : ''}
           </MDInformation>
         </Clearfix>
       </Wrapper>
