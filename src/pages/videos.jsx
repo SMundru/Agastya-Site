@@ -10,6 +10,7 @@ import PostsWrapper from '../components/Common/PostsWrapper';
 import Pagination from '../components/Common/Pagination';
 import { PostContent } from '../components/Post/styled';
 import { myContext } from '../components/App/AppContext';
+import Wrapper from '../components/Common/Wrapper';
 
 const Videos = ({ location }) => {
   let folder; let division; let route;
@@ -33,7 +34,7 @@ const Videos = ({ location }) => {
   useEffect(() => {
     if (typeof videos === 'undefined' || videos.length === 0) {
       return navigate('/');
-    } return function () {};
+    } return () => {};
   });
 
   return (
@@ -47,22 +48,24 @@ const Videos = ({ location }) => {
               </title>
               <meta name="og:title" content={`${PREFIX}${route}`} />
             </Helmet>
-            <PostsWrapper>
-              <Row>
-                {typeof videos !== 'undefined' && videos.map((object) => {
-                  if (typeof object === 'undefined') {
-                    return null;
-                  }
-                  return (
-                    <Col key={object.S3Name.S}>
-                      <PostContent>
-                        <VideoFrame detail={object} />
-                      </PostContent>
-                    </Col>
-                  );
-                })}
-              </Row>
-            </PostsWrapper>
+            <Wrapper>
+              <PostsWrapper>
+                <Row>
+                  {typeof videos !== 'undefined' && videos.map((object) => {
+                    if (typeof object === 'undefined') {
+                      return null;
+                    }
+                    return (
+                      <Col key={object.S3Name.S}>
+                        <PostContent>
+                          <VideoFrame detail={object} />
+                        </PostContent>
+                      </Col>
+                    );
+                  })}
+                </Row>
+              </PostsWrapper>
+            </Wrapper>
             <Pagination postCount={1} location={location} />
           </Layout>
         )
