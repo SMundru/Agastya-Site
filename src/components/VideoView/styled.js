@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import {PRIMARY_COLOR} from '~/components/Common/constants';
-import TextareaAutosize from "react-textarea-autosize";
-import {Button} from "react-bootstrap";
+import styled from 'styled-components';
+import TextareaAutosize from 'react-textarea-autosize';
+import { Button } from 'react-bootstrap';
+import { PRIMARY_COLOR } from '~/components/Common/constants';
 
 
 export const VideoDetailCol = styled.div`{
@@ -66,8 +66,8 @@ export const CommentBox = styled(TextareaAutosize)`
   border-width: 0 0 2px;
   height: 2.4em;
   line-height: 2.4em;
-  color: ${({theme: {color}}) => color};
-  background-color: ${({theme: {backgroundColor}}) => backgroundColor};
+  color: ${({ theme: { color } }) => color};
+  background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
   font-size: 14px;
   font-style: italic
   z-index: 1000;
@@ -88,9 +88,9 @@ export const CommentBox = styled(TextareaAutosize)`
 
 export const CommentButton = styled(Button)`
   margin-left: 20px;
-  background: ${({theme: {backgroundColor}}) => backgroundColor};;
-  border: 2px solid ${({theme: {color}}) => color};
-  color: ${({theme: {color}}) => color};
+  background: ${({ theme: { backgroundColor } }) => backgroundColor};;
+  border: 2px solid ${({ theme: { color } }) => color};
+  color: ${({ theme: { color } }) => color};
   border-radius: 3px;
   width:10%
   padding: 0.5rem 1rem;
