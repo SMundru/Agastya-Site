@@ -12,7 +12,7 @@ path: "/about/"
 - Ask me Logos, country capitals, additions, multiplications and so on. 
 - I love playing quizzes. I love learning new things.
 - Above all I am a very happy kid full of life.
-- Almost forgot, I love my mommy and daddy who allow me to be very naughty
+- Almost forgot, I love my family who allow me to be very naughty.
   
 ## Special Areas
 - Math
