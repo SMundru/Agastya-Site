@@ -1,6 +1,6 @@
 {
   "peerDependencies": {
-    "gatsby": ">=2.2.9",
+    "gatsby": ">=2.20.12",
     "react": ">=16.8.5",
     "react-dom": ">=16.8.5",
     "prop-types": ">=15.7.2",
@@ -12,7 +12,7 @@
     "clipboard": "^2.0.4",
     "core-js": "^3.0.1",
     "dompurify": "^2.0.8",
-    "gatsby": "^2.20.8",
+    "gatsby": "^2.20.12",
     "gatsby-plugin-s3": "^0.3.3",
     "npm": "^6.14.4",
     "react": "^16.8.5",

@@ -24,6 +24,8 @@ export const Wrapper = styled.section`
 export const BasicInformation = styled.section`
   text-align: center;
   font-size: 16px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+
 
   h1 {
     font-size: 2em;
