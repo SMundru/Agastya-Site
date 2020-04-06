@@ -18,4 +18,10 @@ export const WrapperInner = styled.div`
   width: 100%;
   height: 100%;
   ${({ isHome }) => (isHome ? '' : 'padding: 100px 0 0;')}
+  .row {
+    height: 100%;
+    .col {
+      height: 100%;
+      }
+    }
 `;

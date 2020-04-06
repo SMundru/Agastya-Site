@@ -1,12 +1,13 @@
 import React from 'react';
-import { ControlBar, Player } from 'video-react';
+import { ControlBar } from 'video-react';
 import { Helmet } from 'react-helmet';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import PageWrapper from '../components/Common/Wrapper';
 import { VideoDescription } from '../components/VideoFrame/styled';
 import { PREFIX } from '../constants';
 import Layout from '../components/layout';
-import {CommentBox, CommentButton, NoOutlineVideo, VideoDetailCol} from '../components/VideoView/styled';
+import { CommentButton, CommentInputBox, CommentsViewArea, NoOutlineVideo, VideoDetailCol } from '../components/VideoView/styled';
+import Comment from '../components/Comment';
 
 const VideoView = ({ location }) => {
   let detail;
@@ -40,8 +41,81 @@ const VideoView = ({ location }) => {
           </Col>
           <Col>
             <VideoDetailCol>
-              <CommentBox placeholder="Add a public comment ....." minRows={1} />
+              <CommentInputBox placeholder="Add a public comment ....." minRows={1} />
               <CommentButton>Comment</CommentButton>
+
+              <CommentsViewArea>
+                <Comment comment={{
+                  Comment: 'Module parse failed: Assigning to rvalue (1:2). You may need an appropriate loader to handle this file type, currently no'
+                        + ' loaders are configured to process',
+                  Commenter: 'Sivan Mundru',
+                  CommentedTime: '29/03/2020 7:32 am',
+                }}
+                />
+                <Comment comment={{
+                  Comment: 'Module parse failed: Assigning to rvalue (1:2). You may need an appropriate loader to handle this file type, currently no'
+                        + ' loaders are configured to process',
+                  Commenter: 'Sivan Mundru',
+                  CommentedTime: '29/03/2020 7:32 am',
+                }}
+                />
+                <Comment comment={{
+                  Comment: 'Module parse failed: Assigning to rvalue (1:2). You may need an appropriate loader to handle this file type, currently no'
+                        + ' loaders are configured to process',
+                  Commenter: 'Sivan Mundru',
+                  CommentedTime: '29/03/2020 7:32 am',
+                }}
+                />
+                <Comment comment={{
+                  Comment: 'Module parse failed: Assigning to rvalue (1:2). You may need an appropriate loader to handle this file type, currently no'
+                        + ' loaders are configured to process',
+                  Commenter: 'Sivan Mundru',
+                  CommentedTime: '29/03/2020 7:32 am',
+                }}
+                />
+                <Comment comment={{
+                  Comment: 'Module parse failed: Assigning to rvalue (1:2). You may need an appropriate loader to handle this file type, currently no'
+                        + ' loaders are configured to process',
+                  Commenter: 'Sivan Mundru',
+                  CommentedTime: '29/03/2020 7:32 am',
+                }}
+                />
+                <Comment comment={{
+                  Comment: 'Module parse failed: Assigning to rvalue (1:2). You may need an appropriate loader to handle this file type, currently no'
+                        + ' loaders are configured to process',
+                  Commenter: 'Sivan Mundru',
+                  CommentedTime: '29/03/2020 7:32 am',
+                }}
+                />
+                <Comment comment={{
+                  Comment: 'Module parse failed: Assigning to rvalue (1:2). You may need an appropriate loader to handle this file type, currently no'
+                        + ' loaders are configured to process',
+                  Commenter: 'Sivan Mundru',
+                  CommentedTime: '29/03/2020 7:32 am',
+                }}
+                />
+                <Comment comment={{
+                  Comment: 'Module parse failed: Assigning to rvalue (1:2). You may need an appropriate loader to handle this file type, currently no'
+                        + ' loaders are configured to process',
+                  Commenter: 'Sivan Mundru',
+                  CommentedTime: '29/03/2020 7:32 am',
+                }}
+                />
+                <Comment comment={{
+                  Comment: 'Module parse failed: Assigning to rvalue (1:2). You may need an appropriate loader to handle this file type, currently no'
+                        + ' loaders are configured to process',
+                  Commenter: 'Sivan Mundru',
+                  CommentedTime: '29/03/2020 7:32 am',
+                }}
+                />
+                <Comment comment={{
+                  Comment: 'Module parse failed: Assigning to rvalue (1:2). You may need an appropriate loader to handle this file type, currently no'
+                        + ' loaders are configured to process',
+                  Commenter: 'Sivan Mundru',
+                  CommentedTime: '29/03/2020 7:32 am',
+                }}
+                />
+              </CommentsViewArea>
             </VideoDetailCol>
           </Col>
         </Row>
