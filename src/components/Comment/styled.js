@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Comment from './index';
 
 
 export const CommentWrapper = styled.section`

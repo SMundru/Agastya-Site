@@ -109,8 +109,7 @@ const VideoView = ({ location }) => {
                 }}
                 />
                 <Comment comment={{
-                  Comment: 'Module parse failed: Assigning to rvalue (1:2). You may need an appropriate loader to handle this file type, currently no'
-                        + ' loaders are configured to process',
+                  Comment: 'Test',
                   Commenter: 'Sivan Mundru',
                   CommentedTime: '29/03/2020 7:32 am',
                 }}

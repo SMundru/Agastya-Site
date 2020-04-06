@@ -17,7 +17,7 @@ export const VideoDetailCol = styled.div`
    }
    
    height: 100% !important;
-   overflow: scroll !important;
+   overflow: hidden !important;
 `;
 
 export const NoOutlineVideo = styled(Player)`
@@ -122,6 +122,7 @@ export const CommentButton = styled(Button)`
 
 
 export const CommentsViewArea = styled.div`
+padding-bottom: 10%;
 overflow: scroll !important;
 width: 100%;
 height: 100%;
