@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import { CommentMetaData, CommentText, CommentWrapper } from './styled';
 
 const Comment = ({ comment }) => {
-  console.log(comment);
   return (
     <CommentWrapper>
       <CommentMetaData>

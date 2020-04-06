@@ -10,10 +10,12 @@ border-radius: 10px;
 `;
 
 export const CommentMetaData = styled.div`
-color: ${({ theme: { backgroundColor } }) => backgroundColor};
+color: #686868;
 background-color: ${({ theme: { color } }) => color};
-font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-font-size: 0.8rem;
+font-family: "Courier New", Courier, monospace;
+font-size: 0.6rem;
+font-weight: bolder;
+font-style: normal;
 `;
 
 export const CommentText = styled.div`

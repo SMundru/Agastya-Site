@@ -15,25 +15,16 @@ export const Tags = styled.div`
 `;
 
 export const VideoDescription = styled.section`
+  display: flex;
   padding: 1em 0 4em;
   line-height: 1.6em;
-
-  h2 {
-    margin: 24px 0 10px;
-    font-size: 28px;
-  }
 
   h3 {
     margin: 24px 0 10px;
     font-size: 24px;
   }
-
-  h4 {
-    margin: 24px 0 10px;
-    font-size: 21px;
-  }
-
   p {
+      flex: 1 !important;
     margin: 16px 0 0;
     font-size: 16px;
   }
@@ -51,8 +42,6 @@ export const VideoDescription = styled.section`
   pre {
     margin: 20px 0 0;
   }
-  
- 
 `;
 
 export const ImageWrapper = styled.figure`

@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import TextareaAutosize from 'react-textarea-autosize';
-import { Button } from 'react-bootstrap';
 import { Player } from 'video-react';
 import { PRIMARY_COLOR } from '~/components/Common/constants';
+import {Row} from "react-bootstrap";
 
 
 export const VideoDetailCol = styled.div`
@@ -17,8 +16,38 @@ export const VideoDetailCol = styled.div`
    }
    
    height: 100% !important;
+   
    overflow: hidden !important;
+   .row{
+      height: auto;
+      vertical-align: baseline !important;
+        margin: 0 !important;
+        .col {
+          padding: 0 !important;
+        }
+      .p {
+        margin: 0 !important;
+      }
+   }
+   
+   
+   
+   
 `;
+
+
+export const VideoTitleRow = styled(Row)`
+   display: flex;
+   padding-top: 5%;
+   vertical-align: middle;   
+   p {
+    text-align: right;
+    font-size: 1rem;
+    margin: 0.5rem 0 0 0;
+    color: slategrey;   
+   }
+`;
+
 
 export const NoOutlineVideo = styled(Player)`
     video {
@@ -29,100 +58,8 @@ export const NoOutlineVideo = styled(Player)`
     }
 `;
 
-export const PostContent = styled.section`
-  line-height: 1.6em;
-   width: 50%;
-   margin-left: 50px; 
-
-  h2 {
-    margin: 24px 0 10px;
-    font-size: 28px;
-    }
-
-  h3 {
-    margin: 24px 0 10px;
-    font-size: 24px;
-    text-align: center
-
-  }
-
-  h4 {
-    margin: 24px 0 10px;
-    font-size: 21px;
-  }
-
-  p {
-    margin: 16px 0 0;
-    font-size: 16px;
-        text-align: center
-
-  }
-
-  blockquote {
-    margin: 40px 0 0;
-    padding: 0 0 0 2em;
-    line-height: 1.2em;
-    color: #aaa;
-    font-style: italic;
-    font-family: 'Kaushan Script',sans-serif;
-    font-size: 24px;
-  }
-
-  pre {
-    margin: 20px 0 0;
-  }
-`;
-
-export const CommentInputBox = styled(TextareaAutosize)`
-  margin-top :10px;
-  position: relative;
-  width: 80% !important;
-  outline: none;
-  border-width: 0 0 2px;
-  height: 2.4em;
-  line-height: 2.4em;
-  color: ${({ theme: { color } }) => color};
-  background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
-  font-size: 14px;
-  font-style: italic;
-  z-index: 1000;
-
-  @media (max-width: 414px) {
-    display: none;
-    right: 0;
-    left: 0;
-    width: 100%;
-  }
- 
-  &:focus {
-    border-color: ${PRIMARY_COLOR} !important;
-  }
-`;
-
-export const CommentButton = styled(Button)`
-  margin-left: 5%;
-  background: ${({ theme: { backgroundColor } }) => backgroundColor};;
-  border: 2px solid ${({ theme: { color } }) => color};
-  color: ${({ theme: { color } }) => color};
-  border-radius: 3px;
-  width:15%;
-  padding: 0.5rem 0.5rem;
-  vertical-align: text-bottom;
-  font-size: 70%;
-  
-  &:focus {
-    color: ${({ theme: { backgroundColor } }) => backgroundColor};
-    background-color: ${({ theme: { color } }) => color}; 
-  }
-  &:hover {
-    color: ${({ theme: { backgroundColor } }) => backgroundColor};
-    background-color: ${({ theme: { color } }) => color}; 
-    border: 2px solid ${({ theme: { color } }) => color};
-  }`;
-
-
 export const CommentsViewArea = styled.div`
-padding-bottom: 10%;
+padding-bottom: 30%;
 overflow: scroll !important;
 width: 100%;
 height: 100%;
