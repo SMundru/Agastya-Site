@@ -6,7 +6,7 @@ import PageWrapper from '../components/Common/Wrapper';
 import { VideoDescription } from '../components/VideoFrame/styled';
 import { PREFIX } from '../constants';
 import Layout from '../components/layout';
-import { CommentBox, CommentButton, VideoDetailCol } from '../components/VideoView/styled';
+import {CommentBox, CommentButton, NoOutlineVideo, VideoDetailCol} from '../components/VideoView/styled';
 
 const VideoView = ({ location }) => {
   let detail;
@@ -29,9 +29,9 @@ const VideoView = ({ location }) => {
         <Row>
           <Col>
             <VideoDetailCol>
-              <Player src={detail.VideoUrl.S} poster={detail.PosterUrl.S} preload="none" playsInline>
+              <NoOutlineVideo src={detail.VideoUrl.S} poster={detail.PosterUrl.S} preload="none" playsInline>
                 <ControlBar autoHide />
-              </Player>
+              </NoOutlineVideo>
               <VideoDescription>
                 <h3>{detail.DisplayName.S}</h3>
                 <p>{detail.Description.S}</p>

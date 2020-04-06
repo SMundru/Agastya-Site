@@ -1,16 +1,31 @@
 import styled from 'styled-components';
 import TextareaAutosize from 'react-textarea-autosize';
-import { Button } from 'react-bootstrap';
-import { PRIMARY_COLOR } from '~/components/Common/constants';
+import {Button} from 'react-bootstrap';
+import {PRIMARY_COLOR} from '~/components/Common/constants';
+import {Player} from 'video-react';
 
 
-export const VideoDetailCol = styled.div`{
+export const VideoDetailCol = styled.div`
+   padding-top:30px;
    margin-left: 50px; 
    margin-right: 50px; 
-   width=100%
+   width=100%;
+   div {
+   &:focus{
+      outline:${PRIMARY_COLOR} auto 5px!important;
+      box-shadow: none !important;
+    }
    }
 `;
 
+export const NoOutlineVideo = styled(Player)`
+    video {
+        &:focus{
+            outline:${PRIMARY_COLOR} auto 5px!important;
+            box-shadow: none !important;
+        }
+    }
+`;
 
 export const PostContent = styled.section`
   line-height: 1.6em;
@@ -61,15 +76,15 @@ export const PostContent = styled.section`
 export const CommentBox = styled(TextareaAutosize)`
   margin-top :10px;
   position: relative;
-  width: 80%; !important
-  outline: 0;
+  width: 80% !important;
+  outline: none;
   border-width: 0 0 2px;
   height: 2.4em;
   line-height: 2.4em;
-  color: ${({ theme: { color } }) => color};
-  background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
+  color: ${({theme: {color}}) => color};
+  background-color: ${({theme: {backgroundColor}}) => backgroundColor};
   font-size: 14px;
-  font-style: italic
+  font-style: italic;
   z-index: 1000;
 
   @media (max-width: 414px) {
@@ -80,19 +95,30 @@ export const CommentBox = styled(TextareaAutosize)`
   }
  
   &:focus {
-    border-color: ${PRIMARY_COLOR}; !important
+    border-color: ${PRIMARY_COLOR} !important;
   }
-
 `;
 
-
 export const CommentButton = styled(Button)`
-  margin-left: 20px;
-  background: ${({ theme: { backgroundColor } }) => backgroundColor};;
-  border: 2px solid ${({ theme: { color } }) => color};
-  color: ${({ theme: { color } }) => color};
+  margin-left: 5%;
+  background: ${({theme: {backgroundColor}}) => backgroundColor};;
+  border: 2px solid ${({theme: {color}}) => color};
+  color: ${({theme: {color}}) => color};
   border-radius: 3px;
-  width:10%
-  padding: 0.5rem 1rem;
+  width:15%;
+  padding: 0.5rem 0.5rem;
   vertical-align: text-bottom;
-  font-size: 0.8rem;`;
+  font-size: 70%;
+  
+  &:focus {
+    color: ${({theme: {backgroundColor}}) => backgroundColor};
+    background-color: ${({theme: {color}}) => color}; 
+  }
+  
+  &:hover {
+    color: ${({theme: {backgroundColor}}) => backgroundColor};
+    background-color: ${({theme: {color}}) => color}; 
+    border: 2px solid ${({theme: {color}}) => color};
+  };`
+;
+
