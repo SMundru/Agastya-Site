@@ -1,7 +1,7 @@
-import TextareaAutosize from "react-textarea-autosize";
-import {Button} from "react-bootstrap";
-import {PRIMARY_COLOR} from "../Common/constants";
-import styled from "styled-components";
+import TextareaAutosize from 'react-textarea-autosize';
+import { Button } from 'react-bootstrap';
+import styled from 'styled-components';
+import { PRIMARY_COLOR } from '../Common/constants';
 
 export const CommentButton = styled(Button)`
   margin-left: 5%;
@@ -59,8 +59,8 @@ export const CommenterName = styled.input`
   border-color: ${({ theme: { color } }) => color};
   height: 2.4em;
   line-height: 2.4em;
-  color: ${({theme: {color}}) => color};
-  background-color: ${({theme: {backgroundColor}}) => backgroundColor};
+  color: ${({ theme: { color } }) => color};
+  background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
   font-size: 14px;
   font-style: italic;
   z-index: 1000;
@@ -76,4 +76,4 @@ export const CommenterName = styled.input`
     border-color: ${PRIMARY_COLOR} !important;
   }
 \`;
-`
+`;

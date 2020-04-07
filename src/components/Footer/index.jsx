@@ -3,13 +3,15 @@ import { FooterWrapper } from './styled';
 
 const Footer = () => (
   <FooterWrapper>
-      Copyright © <a
+    Copyright ©
+    {' '}
+    <a
       href="https://card-stack.co.uk"
       target="_blank"
       rel="noreferrer noopener"
     >
       Cardstack Consulting Limited 2020
-  </a>
+    </a>
   </FooterWrapper>
 );
 

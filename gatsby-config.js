@@ -4,7 +4,7 @@ const siteMetadata = {
   title: TITLE,
   author: AUTHOR,
   homepage: SITE_URL,
-  siteUrl: SITE_URL
+  siteUrl: SITE_URL,
 };
 
 module.exports = {
@@ -60,10 +60,10 @@ module.exports = {
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet', {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        icon: "src/resources/images/orange.png", // This path is relative to the root of the site.
-      }
+        icon: 'src/resources/images/orange.png', // This path is relative to the root of the site.
+      },
     },
     'gatsby-plugin-styled-components',
     {
@@ -74,7 +74,7 @@ module.exports = {
         start_url: '/',
         background_color: '#fff',
         theme_color: '#3B9CFF',
-        display: 'minimal-ui'
+        display: 'minimal-ui',
       },
     },
     'gatsby-plugin-sitemap',
@@ -88,10 +88,10 @@ module.exports = {
     },
     'gatsby-plugin-offline',
     {
-      resolve: `gatsby-plugin-s3`,
+      resolve: 'gatsby-plugin-s3',
       options: {
-        bucketName: "agastya.co.uk",
+        bucketName: 'agastya.co.uk',
       },
-    }
+    },
   ],
 };

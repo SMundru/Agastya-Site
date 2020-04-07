@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import Layout from '~/components/layout';
 import About from '~/components/About';
 
-const AboutTemplate = props => (
+const AboutTemplate = (props) => (
   <Layout {...props}>
     <About {...props} />
   </Layout>

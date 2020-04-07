@@ -9,7 +9,7 @@ import { Wrapper } from './styled';
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    location: PropTypes.shape({ pathname: PropTypes.string.isRequired }).isRequired
+    location: PropTypes.shape({ pathname: PropTypes.string.isRequired }).isRequired,
   };
 
   state = {
@@ -37,7 +37,7 @@ export default class App extends Component {
   render() {
     const {
       location,
-      children
+      children,
     } = this.props;
     const { isDracula } = this.state;
     const theme = isDracula ? {
