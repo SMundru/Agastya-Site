@@ -10,7 +10,7 @@ import Pagination from '../components/Common/Pagination';
 import { myContext } from '../components/App/AppContext';
 import Wrapper from '../components/Common/Wrapper';
 import PostsWrapper from '../components/Common/PostsWrapper';
-import { PostContent } from '../components/Post/styled';
+import { PostContent } from '../components/Videos/styled';
 
 const Videos = ({ location }) => {
   let folder; let division; let route;
