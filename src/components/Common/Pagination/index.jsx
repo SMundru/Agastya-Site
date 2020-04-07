@@ -3,8 +3,8 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { FaAngleDoubleLeft, FaAngleDoubleRight, FaAngleLeft, FaAngleRight, FaEllipsisH } from 'react-icons/fa';
 import { CONTENT_PER_PAGE, PAGE_PER_SCREEN } from '~/constants';
-import getPage from '~/utils/getPage';
 import { Wrapper } from './styled';
+import getPage from '../../../utils/getPage';
 
 const Pagination = ({
   postCount,
@@ -15,7 +15,7 @@ const Pagination = ({
   const pages = Array.from(new Array(pageCount), (cnt, i) => i + 1);
   const page = getPage(location);
   const hasManyPages = pageCount >= PAGE_PER_SCREEN;
-  const filteredPages = hasManyPages ? pages.filter(p => (
+  const filteredPages = hasManyPages ? pages.filter((p) => (
     Math.abs(page - p) <= Math.floor(PAGE_PER_SCREEN / 2)
   )) : pages;
   const isNearStart = filteredPages.includes(1);

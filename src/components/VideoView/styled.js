@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Player } from 'video-react';
+import { Row } from 'react-bootstrap';
 import { PRIMARY_COLOR } from '~/components/Common/constants';
-import {Row} from "react-bootstrap";
 
 
 export const VideoDetailCol = styled.div`
@@ -16,8 +16,8 @@ export const VideoDetailCol = styled.div`
    }
    
    height: 100% !important;
-   
    overflow: hidden !important;
+   
    .row{
       height: auto;
       vertical-align: baseline !important;
@@ -59,9 +59,8 @@ export const NoOutlineVideo = styled(Player)`
 `;
 
 export const CommentsViewArea = styled.div`
-padding-bottom: 30%;
 overflow: scroll !important;
 width: 100%;
-height: 100%;
+height: 70%;
 `;
 

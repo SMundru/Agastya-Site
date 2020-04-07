@@ -15,7 +15,7 @@ margin-top: -20px;
  
 @media (min-width:961px)  {
 margin-top: -20px;
-  }
+ }
 `;
 
 
@@ -178,7 +178,7 @@ export const SocialInformation = styled.section`
 `;
 
 export const MDInformation = styled.section`
-position: relative;
+  position: relative;
   width: 30%;
   font-size: 1vw;
   text-align: left;
@@ -223,9 +223,9 @@ position: relative;
 export const Button = styled.button`
   display: flex;
   align-items: center;
-  color: ${({theme: {color}}) => color};
-  background-color: ${({theme: {backgroundColor}}) => backgroundColor};
-  border: 1px solid ${({theme: {color}}) => color};
+  color: ${({ theme: { color } }) => color};
+  background-color: ${({ theme: { backgroundColor } }) => backgroundColor};
+  border: 1px solid ${({ theme: { color } }) => color};
   border-radius: 4px;
   outline: 0;
 `;

@@ -6,11 +6,11 @@ import PropTypes from 'prop-types';
 import VideoFrame from '../components/VideoFrame';
 import { PREFIX } from '../constants';
 import Layout from '../components/layout';
-import PostsWrapper from '../components/Common/PostsWrapper';
 import Pagination from '../components/Common/Pagination';
-import { PostContent } from '../components/Post/styled';
 import { myContext } from '../components/App/AppContext';
 import Wrapper from '../components/Common/Wrapper';
+import PostsWrapper from '../components/Common/PostsWrapper';
+import { PostContent } from '../components/Post/styled';
 
 const Videos = ({ location }) => {
   let folder; let division; let route;
