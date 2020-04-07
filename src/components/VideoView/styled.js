@@ -28,23 +28,20 @@ export const VideoDetailCol = styled.div`
       .p {
         margin: 0 !important;
       }
-   }
-   
-   
-   
-   
+   }   
 `;
 
 
 export const VideoTitleRow = styled(Row)`
    display: flex;
    padding-top: 5%;
-   vertical-align: middle;   
+   vertical-align: middle;
    p {
     text-align: right;
     font-size: 1rem;
     margin: 0.5rem 0 0 0;
-    color: slategrey;   
+    color: slategrey;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;   
    }
 `;
 
