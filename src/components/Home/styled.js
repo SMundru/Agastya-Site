@@ -11,9 +11,8 @@ export const Title = styled.h1`
   width: 80%;
   height: 1.5em;
   line-height: 1.5em;
-  font-size: 48px;
   font-size: 10vw;
-  font-family: 'Kaushan Script';
+  font-family: 'Kaushan Script',serif;
   text-align: center;
   text-overflow: ellipsis;
   overflow: hidden;
