@@ -8,6 +8,9 @@ export const VideoDetailCol = styled.div`
    padding-top:30px;
    margin-left: 50px; 
    margin-right: 50px; 
+   line-height: 1.5;
+   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+
    div {
    &:focus{
       outline:${PRIMARY_COLOR} auto 5px!important;
@@ -42,6 +45,9 @@ export const VideoTitleRow = styled(Row)`
     margin: 0.5rem 0 0 0;
     color: slategrey;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;   
+   }
+   h3 {
+   font-size: 1.75rem;
    }
 `;
 
