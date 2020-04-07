@@ -44,10 +44,7 @@ exports.createPages = ({ graphql, actions }) => {
               node {
                 frontmatter {
                   path
-                  category
-                  tags
                   type
-                  hide
                 }
               }
             }
