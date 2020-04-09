@@ -101,5 +101,6 @@ height: 67%;
 p{
 font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 font-size: 0.8rem;
+line-height:1.2rem !important;
 }`;
 
