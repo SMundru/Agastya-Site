@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { CommentButton, CommenterName, CommentInputBox } from './styled';
+import { FormGroup } from 'react-bootstrap';
+import { CommentButton, CommenterName, CommentFrom, CommentInputBox } from './styled';
 
 const CommentInput = () => {
   const [name, setName] = useState('');
@@ -20,11 +21,13 @@ const CommentInput = () => {
 
 
   return (
-    <form>
+    <CommentFrom>
       <CommentInputBox name="comment" value={comment} onChange={updateComment} placeholder="add a public comment ....." minRows={1} />
-      <CommenterName placeholder="and your name ......" name="name" aria-label="Name" type="text" value={name} onChange={updateName} />
-      <CommentButton>Comment</CommentButton>
-    </form>
+      <FormGroup>
+        <CommenterName placeholder="and your name ......" name="name" aria-label="Name" type="text" value={name} onChange={updateName} />
+        <CommentButton>Comment</CommentButton>
+      </FormGroup>
+    </CommentFrom>
   );
 };
 

@@ -7,6 +7,9 @@ padding: 10px;
 width: 100%;
 background-color: ${({ theme: { color } }) => color};
 border-radius: 10px;
+-webkit-box-shadow: 0 10px 6px -6px #777 !important;
+-moz-box-shadow: 0 10px 6px -6px #777 !important;
+box-shadow: 0 10px 6px -6px #777 !important;
 `;
 
 export const CommentMetaData = styled.div`
