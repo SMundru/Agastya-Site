@@ -82,22 +82,24 @@ text-justify: newspaper !important;
 overflow: scroll !important;
 width: 100%;
 padding: 0 10px 0 10px;
+}
 
 @media (max-width: 450px) {
 h3 {
   font-size: 1.4rem;
 }
+}
 
 @media (min-height: 800px) {
-height: 75%;
-}
+  height: 75%;
 }
 
+@media (max-height: 750px){
+height: 67%;
+}
 
 p{
 font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 font-size: 0.8rem;
-}
-}
-`;
+}`;
 
