@@ -11,6 +11,7 @@ import { CommentsViewArea, NoOutlineVideo, VideoDetailCol, VideoTitleRow } from 
 import Comment from '../components/Comment';
 import CommentInput from '../components/CommentInput';
 import MobileVideoView from '../components/MobileVideoView';
+import { MobileVideoTitle } from '../components/MobileVideoView/styled';
 
 const VideoView = ({ location }) => {
   let detail;
@@ -50,17 +51,13 @@ const VideoView = ({ location }) => {
                 <NoOutlineVideo src={detail.VideoUrl.S} poster={detail.PosterUrl.S} preload="none" playsInline>
                   <ControlBar autoHide />
                 </NoOutlineVideo>
-                <VideoTitleRow>
-                  <Col>
-                    <h3>{detail.DisplayName.S}</h3>
-                  </Col>
-                  <Col>
-                    <p>
-                      <FaEye />
-                      {detail.Views.N}
-                    </p>
-                  </Col>
-                </VideoTitleRow>
+                <MobileVideoTitle>
+                  <h3>{detail.DisplayName.S}</h3>
+                  <p>
+                    <FaEye />
+                    {detail.Views.N}
+                  </p>
+                </MobileVideoTitle>
                 <Row>
                   <p>
                     Module parse failed: Assigning to rvalue (1:2). You may need an appropriate loader to handle this file type,

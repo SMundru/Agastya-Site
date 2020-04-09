@@ -89,8 +89,7 @@ export const CommenterName = styled.input`
 
 export const CommentFrom = styled.form`
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  margin: 0 10px 0 10px !important;
-        -webkit-align-items: baseline;
+  -webkit-align-items: baseline;
 
   @media (max-width: 414px) {
   .form-group {
