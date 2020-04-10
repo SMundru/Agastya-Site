@@ -31,7 +31,6 @@ export const CommentButton = styled(Button)`
     padding: 0;
     margin-top: 9px;
   }
-
 `;
 
 export const CommentInputBox = styled(TextareaAutosize)`
