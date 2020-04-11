@@ -7,6 +7,16 @@ display: flex;
 flex-direction: column;
 align-items: center;
 padding-top: 10%;
+
+.login-error {
+    color: red;
+    border: ${({theme: {color}}) => color};
+    border-radius: 2px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+  
 input {
   width: 20%;
   vertical-align: middle;
@@ -35,7 +45,7 @@ input {
 }
 `
 
-export const LoginButton = styled(Button)`
+export const FormButton = styled(Button)`
   margin-top: 2%;
   background: ${({ theme: { backgroundColor } }) => backgroundColor};;
   border: 2px solid ${({ theme: { color } }) => color};

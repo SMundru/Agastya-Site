@@ -1,6 +1,6 @@
 import styled, {css} from 'styled-components';
 import {Link} from 'gatsby';
-import {FaCaretDown, FaHome, FaUser} from 'react-icons/fa';
+import {FaCaretDown, FaHome, FaUser, FaUserCircle, FaUserCog, FaUserLock, FaUserNinja, FaUserSecret, FaUserShield, FaUserSlash} from 'react-icons/fa';
 import {PRIMARY_COLOR} from '~/components/Common/constants';
 
 export const Hamburger = styled.div`
@@ -137,7 +137,7 @@ export const Home = styled(FaHome)`
 `;
 
 
-export const Admin = styled(FaUser)`
+export const Admin = styled(FaUserShield)`
   font-size: 24px;
 `;
 

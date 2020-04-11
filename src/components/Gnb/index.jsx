@@ -303,7 +303,7 @@ const Gnb = ({
                   </SubMenu>
                 </ListMenu>
                 <ListMenu>
-                  <StyledLink to="/login" onClick={toggleMenu}>
+                  <StyledLink to="/admin" onClick={toggleMenu}>
                   <Admin/>
                 </StyledLink>
                 </ListMenu>

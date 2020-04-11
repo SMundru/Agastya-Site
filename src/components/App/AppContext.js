@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
 export const myContext = React.createContext();
 
@@ -13,6 +13,12 @@ const AppContext = (props) => {
   const [authenticated, setAuthenticated] = useState(prevAuth);
   const [authBody, setAuthBody] = useState(prevAuthBody);
   const [authError, setAuthError] = useState('');
+
+  useEffect(() => {
+      window.localStorage.setItem('auth', authenticated);
+      window.localStorage.setItem('authBody', authBody);
+      window.localStorage.setItem('authError', authError);
+  });
 
 
   return (
