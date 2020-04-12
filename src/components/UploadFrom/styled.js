@@ -31,7 +31,7 @@ input {
     font-weight: bolder;}
 
 input:focus{     outline: 2px dashed ${({theme: {color}}) => color};  outline-offset: -10px;
-    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s left: ;inear;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
     transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid ${({theme: {color}}) => color};
 }
 
