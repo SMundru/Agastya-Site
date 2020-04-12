@@ -1,8 +1,8 @@
 import React, {useContext} from "react";
 import {myContext} from "../App/AppContext";
-import Wrapper from "../Common/Wrapper";
 import {FormButton} from "../Login/styled";
 import {LogoutPanel} from "./styled";
+import UploadForm from "../UploadFrom";
 
 const Upload = () => {
     const context = useContext(myContext);
@@ -16,9 +16,12 @@ const Upload = () => {
     return (
         <myContext.Consumer>
             {() => (
+                <>
                     <LogoutPanel>
                         <FormButton onClick={logout}>Logout</FormButton>
                     </LogoutPanel>
+                    <UploadForm/>
+                </>
             )}
         </myContext.Consumer>
     );

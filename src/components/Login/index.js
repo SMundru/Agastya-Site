@@ -30,14 +30,24 @@ const Login = ({location}) => {
 
     return (
         <myContext.Consumer>
-            {(context) => (
-                <LoginForm onSubmit={handleSubmit}>
-                    <div className={'login-error'}>{context.authError.message}</div>
-                    <input name = 'username' value={username} type="text" placeholder="Username" onChange={handleChange}/>
-                    <input name = 'password' value={password} type="password" placeholder="Password" onChange={handleChange}/>
-                    <FormButton onClick={handleSubmit}>Login</FormButton>
-                </LoginForm>
-            )}
+            {(context) => {
+                let authError;
+                let message;
+                if (typeof context !== 'undefined') {
+                    authError = context.authError;
+                    if (typeof authError !== 'undefined' && authError !== '') {
+                        message = authError.message;
+                    }
+                }
+                return (
+                    <LoginForm onSubmit={handleSubmit}>
+                        <div className={'login-error'}>{message}</div>
+                        <input name='username' value={username} type="text" placeholder="Username" onChange={handleChange}/>
+                        <input name='password' value={password} type="password" placeholder="Password" onChange={handleChange}/>
+                        <FormButton onClick={handleSubmit}>Login</FormButton>
+                    </LoginForm>
+                );
+            }}
         </myContext.Consumer>)
 }
 

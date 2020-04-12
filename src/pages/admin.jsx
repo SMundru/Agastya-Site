@@ -10,7 +10,10 @@ import {Helmet} from "react-helmet";
 const Admin = ({location}) =>
     <myContext.Consumer>
         {(context) => {
-            let authenticated = context.authenticated;
+            let authenticated;
+            if(typeof context !== 'undefined') {
+                authenticated = context.authenticated;
+            }
             return (
                 <Layout location={location}>
                     <Helmet>
