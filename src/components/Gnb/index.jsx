@@ -88,9 +88,7 @@ const Gnb = ({
           .then((resultData) => {
             context.setDataLoaded();
             const {body} = resultData;
-            context.setCategories(body.categories);
             context.setYears(body.years);
-            context.setCategoryVideoMap(body.categoryVideoMap);
             context.setYearVideoMap(body.yearVideoMap);
           });
     }
@@ -116,7 +114,6 @@ const Gnb = ({
   const isVideos = pathname.replace(/\/$/, '') === '/videos';
   const isHome = pathname.replace(/\/$/, '') === '';
   const isAbout = pathname.replace(/\/$/, '') === '/about';
-  const isCategories = isVideos && division === 'category';
   const isAges = isVideos && division === 'age';
 
   useEffect(() => {
@@ -127,11 +124,9 @@ const Gnb = ({
     }
   }, [isMenuOpened]);
 
-  let categories = [];
   let years = [];
 
   if (typeof context !== 'undefined') {
-    categories = context.categories;
     years = context.years;
   }
   return (
@@ -151,36 +146,6 @@ const Gnb = ({
                       <StyledLink to="/about" className={isAbout ? 'active' : ''} onClick={toggleMenu}>
                         About
                       </StyledLink>
-                    </ListMenu>
-                    <ListMenu>
-                      <HightlightableSpan role="button" onClick={toggleCatSubMenu} onKeyDown={toggleCatSubMenu} tabIndex={0} isActive={isCategories}>
-                        Categories
-                      </HightlightableSpan>
-                      {categories.length > 0
-                          ? (
-                              <MovableFaCaretDown
-                                  className={isCatSubMenuClosed ? 'is-active' : ''}
-                                  onClick={toggleCatSubMenu}
-                              />
-                          )
-                          : null}
-                      <SubMenu isActive={isCatSubMenuClosed}>
-                        <div>
-                          {categories.map((folder) => {
-                            if (folder === '') {
-                              return null;
-                            }
-                            return (
-                                <li key={folder}>
-                                  <StyledLink to="/videos" onClick={toggleMenu} state={{folder, division: 'category'}} className={folder === folderInState ? 'active' : ''}>
-                                    {folder}
-                                    &nbsp;
-                                  </StyledLink>
-                                </li>
-                            );
-                          })}
-                        </div>
-                      </SubMenu>
                     </ListMenu>
                     <ListMenu>
                       <HightlightableSpan role="button" onClick={toggleAgeSubMenu} onKeyDown={toggleCatSubMenu} tabIndex={0} isActive={isAges}>
@@ -257,28 +222,6 @@ const Gnb = ({
                   <StyledLink to="/about" className={isAbout ? 'active' : ''}>
                     About
                   </StyledLink>
-                </ListMenu>
-                <ListMenu>
-                  <StyledLink className={isCategories ? 'active' : ''} to="/">
-                    Categories
-                    {categories.length > 0 ? <FaCaretDown/> : null}
-                  </StyledLink>
-                  <SubMenu>
-                    <div>
-                      {categories.map((folder) => {
-                        if (folder === '') {
-                          return null;
-                        }
-                        return (
-                            <li key={folder}>
-                              <StyledLink to="/videos" key={folder} state={{folder, division: 'category'}} className={folder === folderInState ? 'active' : ''}>
-                                {folder}
-                              </StyledLink>
-                            </li>
-                        );
-                      })}
-                    </div>
-                  </SubMenu>
                 </ListMenu>
                 <ListMenu>
                   <StyledLink className={isAges ? 'active' : ''} to="/">

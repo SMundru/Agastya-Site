@@ -55,10 +55,10 @@ const VideoView = ({location}) => {
                         <ControlBar autoHide/>
                       </NoOutlineVideo>
                       <MobileVideoTitle>
-                        <h3>{detail.DisplayName.S}</h3>
+                        <h3>{detail.DisplayName ? detail.DisplayName.S : ''}</h3>
                         <p>
                           <FaEye/>
-                          {detail.Views.N}
+                          {detail.Views ? detail.Views.N : ''}
                         </p>
                       </MobileVideoTitle>
                       <Row>

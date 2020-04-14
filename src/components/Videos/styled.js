@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const PostContent = styled.section`
+margin: 0 20px 0 20px;
   padding-top: 70px;
   line-height: 1.6em;
   width: 300px;
@@ -40,28 +41,8 @@ export const PostContent = styled.section`
   }
 `;
 
-export const ImageWrapper = styled.figure`
-  position: relative;
-  margin: 0 0 48px;
-  padding: 56.25% 0 0;
-  width: 100%;
-  overflow: hidden;
-
-  img {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    margin: auto;
-    width: 100%;
-    height: auto;
-  }
-`;
-
 export const PostsWrapper = styled.section`
   margin: auto;
-  padding: 120px 0 0;
   max-width: 1176px;
   height: 100%;
   font-size: 0;

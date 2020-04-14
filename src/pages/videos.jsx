@@ -48,22 +48,18 @@ const Videos = ({ location }) => {
               <meta name="og:title" content={`${PREFIX}${route}`} />
             </Helmet>
             <Wrapper>
-              <PostsWrapper>
                 <Row>
                   {typeof videos !== 'undefined' && videos.map((object) => {
                     if (typeof object === 'undefined') {
                       return null;
                     }
                     return (
-                      <Col key={object.S3Name.S}>
                         <PostContent>
                           <VideoFrame detail={object} />
                         </PostContent>
-                      </Col>
                     );
                   })}
                 </Row>
-              </PostsWrapper>
             </Wrapper>
             <Pagination postCount={1} location={location} />
           </Layout>
