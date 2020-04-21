@@ -9,7 +9,7 @@ import Layout from '../components/layout';
 import Pagination from '../components/Common/Pagination';
 import { myContext } from '../components/App/AppContext';
 import Wrapper from '../components/Common/Wrapper';
-import { PostContent, PostsWrapper } from '../components/Videos/styled';
+import { PostContent, VideosRow } from '../components/Videos/styled';
 
 const Videos = ({ location }) => {
   let folder; let division; let route;
@@ -48,20 +48,19 @@ const Videos = ({ location }) => {
               <meta name="og:title" content={`${PREFIX}${route}`} />
             </Helmet>
             <Wrapper>
-                <Row>
-                  {typeof videos !== 'undefined' && videos.map((object) => {
-                    if (typeof object === 'undefined') {
-                      return null;
-                    }
-                    return (
-                        <PostContent>
-                          <VideoFrame detail={object} />
-                        </PostContent>
-                    );
-                  })}
-                </Row>
+              <VideosRow>
+                {typeof videos !== 'undefined' && videos.map((object) => {
+                  if (typeof object === 'undefined') {
+                    return null;
+                  }
+                  return (
+                    <PostContent>
+                      <VideoFrame detail={object} />
+                    </PostContent>
+                  );
+                })}
+              </VideosRow>
             </Wrapper>
-            <Pagination postCount={1} location={location} />
           </Layout>
         )
       }

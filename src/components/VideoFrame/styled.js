@@ -46,7 +46,7 @@ export const VideoDescription = styled.section`
 
 export const ImageWrapper = styled.figure`
   position: relative;
-  margin: 0 0 48px;
+  margin: 0 0 20px;
   padding: 56.25% 0 0;
   width: 100%;
   overflow: hidden;

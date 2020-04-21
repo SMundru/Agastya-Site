@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+import { Row } from 'react-bootstrap';
 
 export const PostContent = styled.section`
-margin: 0 20px 0 20px;
-  padding-top: 70px;
+margin: 0 10px 0 10px;
   line-height: 1.6em;
   width: 300px;
 
@@ -41,32 +41,11 @@ margin: 0 20px 0 20px;
   }
 `;
 
-export const PostsWrapper = styled.section`
-  margin: auto;
-  max-width: 1176px;
-  height: 100%;
-  font-size: 0;
-  @media (max-width: 414px) {
-    padding: 70px 16px 0;
-  }
 
-  &:before,
-  &:after {
-    display: block;
-    content: '';
-    clear: both;
-  }
-  .row{
-    height:100%
-  }
-
-  h1 {
-    margin: .67em 0;
-    font-size: 32px;
-  }
-
-  time {
-    margin: 1em 0;
-    font-size: 14px;
-  }
+export const VideosRow = styled(Row)`
+margin: 100px 0 0 0;
+padding: 0 20px 0 20px;
+align-items: center;
+justify-content: center;
+height: 0 !important;
 `;
